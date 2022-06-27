@@ -178,24 +178,9 @@ function extract_issue_summary(content) {
     }
 }
 
-function process_issue(id, content, hide) {
-    // check the issue type - error, warning, note or default.
-    // issues are foldable, and we use a header row containing the issue type and description to fold/unfold.
-    const summary = extract_issue_summary(content);
-    const result = $('<li>').attr('data-issue-type', summary.type);
+function processs_code_block(content, issue_line_list) {
     const is_code_block = /^\s*(\d*)\s*\|(.*)/;
     let current_code_block = [];
-
-    const toggle_switch = $('<span>')
-        .addClass("fold_toggle issue_toggle")
-        .attr('data-foldable', `#issue_${id}`)
-        .text(summary.text);
-    const issue_line_list = $('<ol>')
-        .attr('id', `issue_${id}`)
-        .addClass("lines foldable issue");
-    result.append(toggle_switch)
-    result.append(issue_line_list);
-
     const line_splits = content.split('\n').filter(e => e.length > 0);
     line_splits.forEach(function(line){
         const code_match = line.match(is_code_block);
@@ -221,6 +206,25 @@ function process_issue(id, content, hide) {
             issue_line_list.append(process_line(line));
         }
     });
+}
+
+function process_issue(id, content, hide) {
+    // check the issue type - error, warning, note or default.
+    // issues are foldable, and we use a header row containing the issue type and description to fold/unfold.
+    const summary = extract_issue_summary(content);
+    const result = $('<li>').attr('data-issue-type', summary.type);
+
+    const toggle_switch = $('<span>')
+        .addClass("fold_toggle issue_toggle")
+        .attr('data-foldable', `#issue_${id}`)
+        .text(summary.text);
+    const issue_line_list = $('<ol>')
+        .attr('id', `issue_${id}`)
+        .addClass("lines foldable issue");
+    result.append(toggle_switch)
+    result.append(issue_line_list);
+	processs_code_block(content, issue_line_list);
+
     if (hide) {
         toggle_switch.addClass('folded')
         issue_line_list.hide();
