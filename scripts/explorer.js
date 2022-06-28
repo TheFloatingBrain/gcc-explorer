@@ -187,15 +187,17 @@ function extract_issue_summary(content) {
     }
 }
 
-function processs_code_block(content, issue_line_list) {
+function processs_code_blocks(content) {
     const is_code_block = /^\s*(\d*)\s*\|(.*)/;
     let current_code_block = [];
+	let issue_line_list = [];
     const line_splits = content.split('\n').filter(e => e.length > 0);
     line_splits.forEach(function(line){
         const code_match = line.match(is_code_block);
         if(code_match){
             current_code_block.push({line: parseInt(code_match[1]), content: code_match[2]})
         }else{
+			let issue = {};
             if(current_code_block.length > 0){
                 let code = "";
                 let line_no = -1
@@ -205,24 +207,43 @@ function processs_code_block(content, issue_line_list) {
                     }
                     code += clean_html(details.content) + '<br>';
                 });
-                code_class = "prettyprint"
-                if(line_no >= 0){
-                    code_class += ` linenums:${line_no}`
-                }
-                issue_line_list.append(`<li><code class="${code_class}">${code}</code></li>`);
+				issue.line_number = line_no;
+				issue.code = code;
+                //code_class = "prettyprint"
+                //if(line_no >= 0){
+                //    code_class += ` linenums:${line_no}`
+                //}
+                //issue_line_list.append(`<li><code class="${code_class}">${code}</code></li>`);
                 current_code_block = [];
             }
-			let test_line = process_line(line);
-			let result = $('<li>');
-			result.append($('<span>').addClass("line-header").text(test_line.header));
-			for( chunk in test_line.chunks ) {
-				result.append(test_line.chunks[chunk]);
-				console.log(test_line.chunks[chunk]);
-			}
-            issue_line_list.append(result);
-			//console.log(test_line);
+			//let test_line = process_line(line);
+			//let result = $('<li>');
+			//result.append($('<span>').addClass("line-header").text(test_line.header));
+			//for( chunk in test_line.chunks ) {
+			//	result.append(test_line.chunks[chunk]);
+			//}
+            //issue_line_list.append(result);
+			const line_data = process_line(line);
+			issue.chunks = line_data.chunks;
+			issue.header = line_data.header;
+			issue_line_list.push(issue);
         }
     });
+	return issue_line_list;
+}
+
+function create_issue(to_append, issue)
+{
+	code_class = "prettyprint";
+	if(issue.line_number >= 0)
+	    code_class += ` linenums:${issue.line_number}`
+	to_append.append(`<li><code class="${code_class}">${issue.code}</code></li>`);
+	current_code_block = [];
+	let result = $('<li>');
+	result.append($('<span>').addClass("line-header").text(issue.header));
+	for( chunk in issue.chunks )
+		result.append(issue.chunks[chunk]);
+	return result;
 }
 
 function process_issue(id, content, hide) {
@@ -240,8 +261,9 @@ function process_issue(id, content, hide) {
         .addClass("lines foldable issue");
     result.append(toggle_switch)
     result.append(issue_line_list);
-	processs_code_block(content, issue_line_list);
-
+	const issues = processs_code_blocks(content, issue_line_list);
+	for( issue in issues )
+		issue_line_list.append(create_issue(issue_line_list, issues[issue]));
     if (hide) {
         toggle_switch.addClass('folded')
         issue_line_list.hide();
