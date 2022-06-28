@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/root/workdir/cpp/build",
-  "command": "/usr/bin/c++  -I/root/.conan/data/ctre/3.7/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include -I/root/workdir/cpp/include -std=gnu++20 -o CMakeFiles/ge.dir/source/parse_gcc_log.o -c /root/workdir/cpp/source/parse_gcc_log.cpp",
-  "file": "/root/workdir/cpp/source/parse_gcc_log.cpp"
-}
-]

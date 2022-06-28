@@ -1,3 +1,0 @@
-/root/workdir/cpp/build/CMakeFiles/ge.dir
-/root/workdir/cpp/build/CMakeFiles/edit_cache.dir
-/root/workdir/cpp/build/CMakeFiles/rebuild_cache.dir
