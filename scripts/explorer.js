@@ -187,7 +187,7 @@ function extract_issue_summary(content) {
     }
 }
 
-function processs_code_blocks(content) {
+function process_code_blocks(content) {
     const is_code_block = /^\s*(\d*)\s*\|(.*)/;
     let current_code_block = [];
 	let issue_line_list = [];
@@ -234,11 +234,14 @@ function processs_code_blocks(content) {
 
 function create_issue(to_append, issue)
 {
-	code_class = "prettyprint";
-	if(issue.line_number >= 0)
-	    code_class += ` linenums:${issue.line_number}`
-	to_append.append(`<li><code class="${code_class}">${issue.code}</code></li>`);
-	current_code_block = [];
+	if(issue.code)
+	{
+		code_class = "prettyprint";
+		if(issue.line_number >= 0)
+		    code_class += ` linenums:${issue.line_number}`
+		to_append.append(`<li><code class="${code_class}">${issue.code}</code></li>`);
+		current_code_block = [];
+	}
 	let result = $('<li>');
 	result.append($('<span>').addClass("line-header").text(issue.header));
 	for( chunk in issue.chunks )
@@ -259,11 +262,14 @@ function process_issue(id, content, hide) {
     const issue_line_list = $('<ol>')
         .attr('id', `issue_${id}`)
         .addClass("lines foldable issue");
-    result.append(toggle_switch)
+    result.append(toggle_switch);
     result.append(issue_line_list);
-	const issues = processs_code_blocks(content, issue_line_list);
+	const issues = process_code_blocks(content);
 	for( issue in issues )
+	{
+		console.log(issues[issue]);
 		issue_line_list.append(create_issue(issue_line_list, issues[issue]));
+	}
     if (hide) {
         toggle_switch.addClass('folded')
         issue_line_list.hide();
