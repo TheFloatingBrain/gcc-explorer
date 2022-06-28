@@ -152,11 +152,15 @@ function create_hyperlinks(source, launcher_format, project_root) {
 function process_line(content) {
     // used for detecting lines that start with paths (to render them as header rows)
     const starts_with_path = /^[\w-./+]+\/[\w-.+]+[^ ]*/;
-    let result = $('<li>');
+    //let result = $('<li>');
+	let header = "";
+	let chunks = [];
     // if the line starts with a path, add it as a line header to the line's list element and strip it out
     // from remaining processing
-    content = content.replace(starts_with_path, function (header) {
-        result.append($('<span>').addClass("line-header").text(header));
+    content = content.replace(starts_with_path, function (extracted_header) {
+		//console.log(header);
+        //result.append($('<span>').addClass("line-header").text(header));
+		header = extracted_header;
         return '';
     });
     // only tokenise content that has one surrounding quote. This is a naive attempt at that
@@ -164,9 +168,14 @@ function process_line(content) {
     // then the content inside quotation marks are tokenised - UNLESS there is a nested quotation, in
     // which case it's output as-is. This helps with stringy-template parameters in errors like:
     $.each(content.split(/(?!\\)(['‘])/), function (chunk, value) {
-        result.append((chunk % 4 === 2) ? tokenise(value) : clean_html(value));
+		//console.log(value);
+        //result.append((chunk % 4 === 2) ? tokenise(value) : clean_html(value));
+		const new_chunk = (chunk % 4 === 2) ? tokenise(value) : clean_html(value);
+		chunks.push(new_chunk);
     });
-    return result;
+	//console.log(chunks);
+	return { header : header, chunks : chunks };
+    //return result;
 }
 
 function extract_issue_summary(content) {
@@ -203,7 +212,15 @@ function processs_code_block(content, issue_line_list) {
                 issue_line_list.append(`<li><code class="${code_class}">${code}</code></li>`);
                 current_code_block = [];
             }
-            issue_line_list.append(process_line(line));
+			let test_line = process_line(line);
+			let result = $('<li>');
+			result.append($('<span>').addClass("line-header").text(test_line.header));
+			for( chunk in test_line.chunks ) {
+				result.append(test_line.chunks[chunk]);
+				console.log(test_line.chunks[chunk]);
+			}
+            issue_line_list.append(result);
+			//console.log(test_line);
         }
     });
 }
