@@ -152,14 +152,11 @@ function create_hyperlinks(source, launcher_format, project_root) {
 function process_line(content) {
     // used for detecting lines that start with paths (to render them as header rows)
     const starts_with_path = /^[\w-./+]+\/[\w-.+]+[^ ]*/;
-    //let result = $('<li>');
 	let header = "";
 	let chunks = [];
     // if the line starts with a path, add it as a line header to the line's list element and strip it out
     // from remaining processing
     content = content.replace(starts_with_path, function (extracted_header) {
-		//console.log(header);
-        //result.append($('<span>').addClass("line-header").text(header));
 		header = extracted_header;
         return '';
     });
@@ -168,14 +165,10 @@ function process_line(content) {
     // then the content inside quotation marks are tokenised - UNLESS there is a nested quotation, in
     // which case it's output as-is. This helps with stringy-template parameters in errors like:
     $.each(content.split(/(?!\\)(['‘])/), function (chunk, value) {
-		//console.log(value);
-        //result.append((chunk % 4 === 2) ? tokenise(value) : clean_html(value));
 		const new_chunk = (chunk % 4 === 2) ? tokenise(value) : clean_html(value);
 		chunks.push(new_chunk);
     });
-	//console.log(chunks);
 	return { header : header, chunks : chunks };
-    //return result;
 }
 
 function extract_issue_summary(content) {
@@ -199,32 +192,18 @@ function process_code_blocks(content) {
         }else{
 			let issue = {};
             if(current_code_block.length > 0){
-                //let code = "";
                 let code = [];
                 let line_no = -1
                 current_code_block.forEach(function(details){
                     if(details.line && line_no < 0){
                         line_no = details.line;
                     }
-                    //code += clean_html(details.content) + '<br>';
                     code.push(details.content);
                 });
 				issue.line_number = line_no;
 				issue.code = code;
-                //code_class = "prettyprint"
-                //if(line_no >= 0){
-                //    code_class += ` linenums:${line_no}`
-                //}
-                //issue_line_list.append(`<li><code class="${code_class}">${code}</code></li>`);
                 current_code_block = [];
             }
-			//let test_line = process_line(line);
-			//let result = $('<li>');
-			//result.append($('<span>').addClass("line-header").text(test_line.header));
-			//for( chunk in test_line.chunks ) {
-			//	result.append(test_line.chunks[chunk]);
-			//}
-            //issue_line_list.append(result);
 			const line_data = process_line(line);
 			issue.chunks = line_data.chunks;
 			issue.header = line_data.header;
@@ -236,21 +215,20 @@ function process_code_blocks(content) {
 
 function create_issue(to_append, issue)
 {
-	if(issue.code)
-	{
+	if(issue.code) {
 		code = "";
 		code_class = "prettyprint";
 		if(issue.line_number >= 0)
 		    code_class += ` linenums:${issue.line_number}`
-		for(ii in issue.code)
-			code += clean_html(issue.code[ii]) + "<br>";
+		for(current_code of issue.code)
+			code += clean_html(current_code) + "<br>";
 		to_append.append(`<li><code class="${code_class}">${code}</code></li>`);
 		current_code_block = [];
 	}
 	let result = $('<li>');
 	result.append($('<span>').addClass("line-header").text(issue.header));
-	for( chunk in issue.chunks )
-		result.append(issue.chunks[chunk]);
+	for(let chunk of issue.chunks)
+		result.append(chunk);
 	return result;
 }
 
@@ -270,8 +248,8 @@ function process_issue(id, content, hide) {
     result.append(toggle_switch);
     result.append(issue_line_list);
 	const issues = process_code_blocks(content);
-	for( issue in issues )
-		issue_line_list.append(create_issue(issue_line_list, issues[issue]));
+	for(issue of issues)
+		issue_line_list.append(create_issue(issue_line_list, issue));
     if (hide) {
         toggle_switch.addClass('folded')
         issue_line_list.hide();
