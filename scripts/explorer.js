@@ -199,13 +199,15 @@ function process_code_blocks(content) {
         }else{
 			let issue = {};
             if(current_code_block.length > 0){
-                let code = "";
+                //let code = "";
+                let code = [];
                 let line_no = -1
                 current_code_block.forEach(function(details){
                     if(details.line && line_no < 0){
                         line_no = details.line;
                     }
-                    code += clean_html(details.content) + '<br>';
+                    //code += clean_html(details.content) + '<br>';
+                    code.push(details.content);
                 });
 				issue.line_number = line_no;
 				issue.code = code;
@@ -236,10 +238,13 @@ function create_issue(to_append, issue)
 {
 	if(issue.code)
 	{
+		code = "";
 		code_class = "prettyprint";
 		if(issue.line_number >= 0)
 		    code_class += ` linenums:${issue.line_number}`
-		to_append.append(`<li><code class="${code_class}">${issue.code}</code></li>`);
+		for(ii in issue.code)
+			code += clean_html(issue.code[ii]) + "<br>";
+		to_append.append(`<li><code class="${code_class}">${code}</code></li>`);
 		current_code_block = [];
 	}
 	let result = $('<li>');
@@ -266,10 +271,7 @@ function process_issue(id, content, hide) {
     result.append(issue_line_list);
 	const issues = process_code_blocks(content);
 	for( issue in issues )
-	{
-		console.log(issues[issue]);
 		issue_line_list.append(create_issue(issue_line_list, issues[issue]));
-	}
     if (hide) {
         toggle_switch.addClass('folded')
         issue_line_list.hide();
