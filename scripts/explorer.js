@@ -111,9 +111,8 @@ function replace_url(tmp_launcher_format, project_root, original, file, line, co
     // a helper method for create_hyperlinks. Given a launcher format, project root, number of elements,
     // and regex matching information (the original match, the file, optionally the line, and optionally the column),
     // return a (mangled) anchor pointing to the hyperlink.
-    if (file.search('//') >= 0) {
+    if (file.search('//') >= 0)
         return original;
-    }
     const elements = args.length;
     const is_absolute = file.startsWith("/");
     const is_system = file.startsWith("/usr");
@@ -173,11 +172,10 @@ function process_line(content) {
 
 function extract_issue_summary(content) {
     const match = content.match(/(error|warning|note): ([^\[\n]+)/)
-    if (match) {
+    if (match)
         return {type: match[1], text: `${match[1]}: ${strip_templates(match[2])}`}
-    } else {
+    else
         return {type: "default", text: "Additional information"}
-    }
 }
 
 function process_code_blocks(content) {
@@ -187,11 +185,11 @@ function process_code_blocks(content) {
     const line_splits = content.split('\n').filter(e => e.length > 0);
     line_splits.forEach(function(line){
         const code_match = line.match(is_code_block);
-        if(code_match){
+        if (code_match) {
             current_code_block.push({line: parseInt(code_match[1]), content: code_match[2]})
-        }else{
+        } else {
 			let issue = {};
-            if(current_code_block.length > 0){
+            if (current_code_block.length > 0){
                 let code = [];
                 let line_no = -1
                 current_code_block.forEach(function(details){
@@ -213,9 +211,8 @@ function process_code_blocks(content) {
 	return issue_line_list;
 }
 
-function create_issue(to_append, issue)
-{
-	if(issue.code) {
+function create_issue(to_append, issue) {
+	if (issue.code) {
 		code = "";
 		code_class = "prettyprint";
 		if(issue.line_number >= 0)
@@ -227,7 +224,7 @@ function create_issue(to_append, issue)
 	}
 	let result = $('<li>');
 	result.append($('<span>').addClass("line-header").text(issue.header));
-	for(let chunk of issue.chunks)
+	for (chunk of issue.chunks)
 		result.append(chunk);
 	return result;
 }

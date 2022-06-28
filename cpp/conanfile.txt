@@ -1,0 +1,6 @@
+[requires]
+ctre/3.7
+
+[generators]
+cmake
+
