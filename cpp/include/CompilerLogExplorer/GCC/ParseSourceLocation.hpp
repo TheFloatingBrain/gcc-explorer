@@ -8,7 +8,7 @@ namespace CompilerLogExplorer::GCC
 {
 	struct SourceLocationParser
 	{
-		constexpr const static auto parser = ctpg::parser (
+		constexpr const static auto parser = ctpg::parser(
 				sourceLocation, 
 				ctpg::terms(
 						cppNumber, 
@@ -17,12 +17,18 @@ namespace CompilerLogExplorer::GCC
 					), 
 				ctpg::nterms(
 						filePath, 
-						lineOrColumnNumber, 
 						sourceLocation
 					), 
 				ctpg::rules(
-						filePath(gccFilePath) >= [](auto path) {
-							return std::filesystem::path(std::string_view{path});
+						filePath(gccFilePath, colonTerm) >= [](auto path, auto) {
+							return std::filesystem::path{std::string_view{path}};
+						}, 
+						sourceLocation(filePath, cppNumber, colonTerm) >= [](auto path, auto lineNumber, auto)
+						{
+							size_t lineNumberUnsinged;
+							const auto lineNumberStringView = std::string_view{lineNumber};
+							std::from_chars(lineNumberStringView.begin(), lineNumberStringView.end(), lineNumberUnsinged);
+							return SourceLocation{path, lineNumberUnsinged};
 						}, 
 						sourceLocation(filePath) >= [](auto path) {
 							return SourceLocation{std::filesystem::path{path}};

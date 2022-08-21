@@ -7,10 +7,23 @@ namespace CompilerLogExplorer::GCC
 {
 	using json = nlohmann::json;
 
-	struct SourceLocation {
+	struct SourceLocation
+	{
 		std::filesystem::path path;
 		std::optional<size_t> line, column;
+		std::strong_ordering operator<=>(const SourceLocation& other) const noexcept = default;
+		operator std::string() const
+		{
+			std::stringstream stream;
+			stream << "SourceLocation{\n"
+					<< "\tpath:{" << path << "};\n"
+					<< "\tline:{" << optionalToString(line) << "};\n"
+					<< "\tcolumn:{" << optionalToString(column) << "};\n"
+					<< "};\n";
+			return stream.str();
+		}
 	};
+
 
 	// <Parse Template Binding/Specialization Lists in GCC Logs> //
 
@@ -49,13 +62,13 @@ namespace CompilerLogExplorer::GCC
 	// <Parse Template Binding/Specialization Lists in GCC Logs> //
 	
 	// <Parse Source Locations (e.g /my/file.cpp:42:42), some support for windows paths (e.g C:/MyFile) in GCC Logs> //
-	constexpr static const auto filePathPattern = FixedString{"([a-zA-Z]:)?([/\\\\][^/\\0]+)+:"};
+	// Limitation, no colons in path. //
+	constexpr static const auto filePathPattern = FixedString{"([a-zA-Z]:)?([/\\\\][^/\\0:]+)+"};
 
 	constexpr static const ctpg::regex_term<filePathPattern.string> gccFilePath("GccLogFilePath");
 
 	constexpr static const auto colonTerm = ctpg::char_term(':');
 
-	constexpr static const auto lineOrColumnNumber = ctpg::nterm<size_t>("LineOrColumnNumber");
 	constexpr static const auto filePath = ctpg::nterm<std::filesystem::path>("FilePath");
 	constexpr static const auto sourceLocation = ctpg::nterm<SourceLocation>("SourceLocation");
 	// </Parse Source Locations (e.g /my/file.cpp:42:42) in GCC Logs> //

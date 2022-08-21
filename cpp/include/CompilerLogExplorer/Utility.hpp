@@ -33,6 +33,15 @@ namespace CompilerLogExplorer
 		}
 	};
 
+	template<typename ParameterType>
+	std::string optionalToString(std::optional<ParameterType> optional) {
+		return optional.has_value() == true ? std::string{optional.value()} : std::string{"<nullopt>"};
+	}
+	template<std::integral ParameterType>
+	std::string optionalToString(std::optional<ParameterType> optional) {
+		return optional.has_value() == true ? std::to_string(optional.value()) : std::string{"<nullopt>"};
+	}
+
 	//template<size_t CapacityParameterConstant = 1024>
 	//struct ConstantLog
 	//{
@@ -77,6 +86,21 @@ namespace CompilerLogExplorer
 	static const auto toVector(auto begin, auto end) {
 		std::vector<ParameterType> vector{begin, end};
 		return vector;
+	}
+
+	static const std::string toString(const auto& from) {
+		return std::string{from};
+	}
+
+	template<typename ParameterType>
+	requires(ParameterType::operator std::string)
+	static const std::string toString(const ParameterType& from) {
+		return std::string{from};
+	}
+
+	std::string_view removeLastCharacter(std::convertible_to<std::string_view> auto from) {
+		auto view = std::string_view{from};
+		return std::string_view{view.begin(), view.end() - 1};
 	}
 }
 

@@ -7,6 +7,8 @@
 #include <ranges>
 #include <variant>
 #include <filesystem>
+#include <charconv>
+#include <compare>
 
 #include <cctype>
 
@@ -14,4 +16,3 @@
 
 #include <nlohmann/json.hpp>
 
-#include <lefticus_tools/simple_stack_vector.hpp>
