@@ -30,6 +30,14 @@ namespace CompilerLogExplorer::GCC
 							std::from_chars(lineNumberStringView.begin(), lineNumberStringView.end(), lineNumberUnsinged);
 							return SourceLocation{path, lineNumberUnsinged};
 						}, 
+						sourceLocation(sourceLocation, cppNumber, colonTerm) >= [](auto location, auto columnNumber, auto)
+						{
+							size_t columnNumberUnsinged;
+							const auto columnNumberStringView = std::string_view{columnNumber};
+							std::from_chars(columnNumberStringView.begin(), columnNumberStringView.end(), columnNumberUnsinged);
+							location.column = columnNumberUnsinged;
+							return location;
+						}, 
 						sourceLocation(filePath) >= [](auto path) {
 							return SourceLocation{std::filesystem::path{path}};
 						}
