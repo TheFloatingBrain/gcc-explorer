@@ -47,7 +47,8 @@ namespace CompilerLogExplorer::GCC
 	void to_json(json& data, const ParentList& list)
 	{
 		json newData = {};
-		newData[ParentList::parentParameter] = list.parent;
+		if(list.parent.contains(ParentList::parentParameter) == true)
+			newData[ParentList::parentParameter] = list.parent[ParentList::parentParameter];
 		if(list.parameterName.has_value() == true)
 			newData[ParentList::parameterNameParameter] = list.parameterName.value();
 		newData[ParentList::dataParameter] = list.data;
@@ -57,11 +58,14 @@ namespace CompilerLogExplorer::GCC
 
 	void from_json(const json& data, ParentList& list)
 	{
-		list.parent = data[ParentList::parentParameter];
+		if(data.contains(ParentList::parentParameter) == true)
+			list.parent = data[ParentList::parentParameter];
 		if(data.contains(ParentList::parameterNameParameter) == true)
-		list.parameterName = std::string{data[ParentList::parameterNameParameter]};
-		list.data = data[ParentList::dataParameter];
-		list.tag = data[ParentList::tagParameter];
+			list.parameterName = std::string{data[ParentList::parameterNameParameter]};
+		if(data.contains(ParentList::dataParameter) == true)
+			list.data = data[ParentList::dataParameter];
+		if(data.contains(ParentList::tagParameter) == true)
+			list.tag = data[ParentList::tagParameter];
 	}
 	
 	constexpr static const auto bindingListBegin = FixedString{"[with"};
@@ -84,6 +88,8 @@ namespace CompilerLogExplorer::GCC
 	constexpr static const auto cppAtom = ctpg::nterm<json>("C++Atom");
 	constexpr static const auto binding = ctpg::nterm<json>("Binding");
 	constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
+	constexpr static const auto bindingData = ctpg::nterm<json>("BindingData");
+	//constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
 	//constexpr static const auto parentBindingList = ctpg::nterm<ParentList>("ParentSpecializationBindingList");
 	constexpr static const auto bindingValue = ctpg::nterm<std::string>("BindingValue");
 }

@@ -13,17 +13,17 @@ namespace CompilerLogExplorer::GCC
 		{
 			ParentList list = parent;
 			list.data[parameter] = argument;
-			//std::get<ParentParameterType>(list).parent[list.parameterName] = list.data;
 			if(list.parameterName.has_value() == true)
-				list.parent[list.parameterName.value()] = list.data;
-		//	if(list.tag == ParentListTag::ParentList)
-		//		return list.parent[ParentList::parentParameter];
-		//	else
-	//		if(list.parent.contains(ParnetList::parentParameter) == true)
-				return list.parent;
+			{
+				auto& parentData = list.parent[ParentList::parentParameter];
+				parentData[list.parameterName.value()] = list.data;
+				return parentData;
+
+			}
+			return list.data;
 		}
 		constexpr const static auto parser = ctpg::parser(
-				bindingList, 
+				bindingData, 
 				ctpg::terms(
 						cppIdentifier, 
 						cppOperator, 
@@ -37,8 +37,8 @@ namespace CompilerLogExplorer::GCC
 						cppAtom, 
 						binding, 
 						bindingValue, 
-						bindingList//, 
-						//parentBindingList
+						bindingList, 
+						bindingData
 					), 
 				ctpg::rules(
 						cppAtom(cppIdentifier) >= [](auto identifier) {
@@ -56,24 +56,42 @@ namespace CompilerLogExplorer::GCC
 						bindingValue(bindingValue, cppAtom) >= [](auto value, auto atom) {
 							return value + std::string{atom};
 						}, 
-						bindingValue(bindingValue, endSquareBracketTerm) >= [](auto value, auto bracket) {
+						bindingValue(bindingValue, endSquareBracketTerm) 
+						>= [](auto value, auto bracket) {
 							return value + std::string{bracket};
 						}, 
 						bindingList(beginSpecializationList) >= [](auto) {
-							return ParentList{};//json{};
+							return ParentList{};
 						}, 
-						bindingList(bindingList, bindingValue, equalTerm, beginSpecializationList) >= [](auto list, auto parameter, auto, auto) {
+						bindingList(
+								bindingList, 
+								bindingValue, 
+								equalTerm, 
+								beginSpecializationList
+							) 
+						>= [](auto list, auto parameter, auto, auto) {
 							return ParentList(list, parameter);
 						}, 
-						bindingList(bindingList, bindingValue, equalTerm, bindingValue, semiColonTerm) 
+						bindingList(
+								bindingList, 
+								bindingValue, 
+								equalTerm, 
+								bindingValue, 
+								semiColonTerm
+							) 
 						>= [](auto list, auto parameter, auto, auto argument, auto) {
 							list.data[parameter] = argument;
 							return list;
 						}, 
-						bindingList(bindingList, bindingValue, equalTerm, bindingValue, endSquareBracketTerm) 
+						bindingData(
+								bindingList, 
+								bindingValue, 
+								equalTerm, 
+								bindingValue, 
+								endSquareBracketTerm
+							) 
 						>= [](auto list, auto parameter, auto, auto argument, auto) {
-							list.data[parameter] = argument;
-							return list;
+							return fromParent(list, parameter, argument);
 						}
 				)
 				//Good?

@@ -22,13 +22,13 @@ namespace CompilerLogExplorer
 		constexpr FixedString(const auto (&string_)[LengthParameterConstant]) noexcept {
 			copy_array(string_, string);
 		}
-		constexpr operator std::string_view() {
+		constexpr operator std::string_view() const {
 			return std::string_view{string};
 		}
-		constexpr operator const char*() {
+		constexpr operator const char*() const {
 			return string;
 		}
-		constexpr operator ctpg::buffers::cstring_buffer<LengthParameterConstant>() {
+		constexpr operator ctpg::buffers::cstring_buffer<LengthParameterConstant>() const {
 			return ctpg::buffers::cstring_buffer{string};
 		}
 	};
