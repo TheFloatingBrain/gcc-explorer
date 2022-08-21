@@ -42,7 +42,9 @@ namespace CompilerLogExplorer::GCC
 						binding, 
 						bindingValue, 
 						bindingList, 
-						bindingData
+						bindingData, 
+						bindingArgument, 
+						listArgumentTerminator
 					), 
 				ctpg::rules(
 						cppAtom(cppIdentifier) >= [](auto identifier) {
@@ -87,7 +89,7 @@ namespace CompilerLogExplorer::GCC
 							list.data[parameter] = argument;
 							return list;
 						}, 
-						bindingData(
+						bindingArgument(
 								bindingList, 
 								bindingValue, 
 								equalTerm, 
@@ -96,19 +98,45 @@ namespace CompilerLogExplorer::GCC
 							) 
 						>= [](auto list, auto parameter, auto, auto argument, auto) {
 							return fromParent(list, parameter, argument);
+						}, 
+						bindingData(
+								bindingData, 
+								bindingValue, 
+								equalTerm, 
+								bindingArgument, 
+								semiColonTerm
+							)
+						>= [](auto list, auto parameter, auto, auto argument, auto) {
+							list[parameter] = argument;
+							return list;
+							//return fromParent(list, parameter, argument);
+						}, 
+						bindingData(bindingArgument) >= [](auto list) {
+							return list;
 						}
-				)
+					
+
+						
 				//Good?
-						//bindingValue(bindingList, bindingValue, equalTerm, bindingValue, endSquareBracketTerm, semiColonTerm) 
-						//>= [](auto list, auto parameter, auto, auto argument, auto, auto) {
-						//	std::cout << "l.p: " << list << "\n"
-						//			//<< "l.d: " << list.data << "\n"
-						//			//<< "l.pn: " << list.parameterName << "\n"
+						//bindingArgument(
+						//		bindingList, 
+						//		bindingValue, 
+						//		equalTerm, 
+						//		bindingValue, 
+						//		endSquareBracketTerm, 
+						//		semiColonTerm
+						//	) 
+						//>= [](auto list, auto parameter, auto, auto argument, auto, auto)
+						//{
+						//	std::cout << "l.p: " << list.parent << "\n"
+						//			<< "l.d: " << list.data << "\n"
+						//			<< "l.pn: " << (list.parameterName.has_value() ? list.parameterName.value() : "<none>") << "\n"
 						//			<< "p: " << parameter << "\n"
 						//			<< "a: " << argument << "\n";
-						//	list[parameter] = argument;
-						//	return list;
+						//	//list.data[parameter] = argument;
+						//	return fromParent(list, parameter, argument);
 						//}//, 
+				)
 	//			////////////////////
 	//					parentBindingList(
 	//							bindingList, 

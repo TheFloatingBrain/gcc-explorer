@@ -133,13 +133,15 @@ TEST(ParseTemplateBinding, ParseNestedBindings)
 			TemplateBindingParser
 		>();
 	CHECK((nestedList.has_value() == true));
+	//debug = true;
 	check_parse<
 			TemplateBindingParser, 
 			FixedString{"[with xyz = abc; vv = \"ww\"; "
-						"derp = [with herp = flerp; kerp = 3];"
+						"derp = [with herp = flerp; kerp = 3]; "
 						"test = 12]"
 					}
 		>("derp", nestedList);
+	debug = false;
 //	//check_parse<
 //	//		TemplateBindingParser, 
 //	//		FixedString{"[with xyz = abc; vv = \"ww\"; "

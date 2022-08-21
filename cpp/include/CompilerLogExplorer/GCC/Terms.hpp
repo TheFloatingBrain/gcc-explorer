@@ -81,7 +81,7 @@ namespace CompilerLogExplorer::GCC
 	constexpr static const ctpg::regex_term<numberPattern.string> cppNumber("C++Number");
 	constexpr static const ctpg::regex_term<beginSpecializationListPattern.string> beginSpecializationList("BeginSpecializationList");
 
-	constexpr static const auto semiColonTerm = ctpg::char_term(';', 1, ctpg::associativity::ltor);
+	constexpr static const auto semiColonTerm = ctpg::char_term(';', 10, ctpg::associativity::ltor);
 	constexpr static const auto equalTerm = ctpg::char_term('=');
 	constexpr static const auto endSquareBracketTerm = ctpg::char_term(']');
 	
@@ -89,9 +89,13 @@ namespace CompilerLogExplorer::GCC
 	constexpr static const auto binding = ctpg::nterm<json>("Binding");
 	constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
 	constexpr static const auto bindingData = ctpg::nterm<json>("BindingData");
+	constexpr static const auto bindingArgument = ctpg::nterm<json>("BindingArgument");
 	//constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
 	//constexpr static const auto parentBindingList = ctpg::nterm<ParentList>("ParentSpecializationBindingList");
 	constexpr static const auto bindingValue = ctpg::nterm<std::string>("BindingValue");
+	struct ListArgumentTerminator {};
+	constexpr static const auto listArgumentTerminator = ctpg::nterm<ListArgumentTerminator>("ListArgumentTerminator");
+
 }
 
 #endif // COMPILER__LOG__EXPLORER__GCC__TERMS__HPP__INCLUDE__GUARD
