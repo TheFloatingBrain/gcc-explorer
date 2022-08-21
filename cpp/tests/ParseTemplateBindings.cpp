@@ -26,7 +26,8 @@ template<
 	>
 void check_parse(std::initializer_list<std::string> keys, auto expected)
 {
-	std::cout << "Running: " << ToPaseParameterConstant.string << "\n";
+	if(debug == true)
+		std::cout << "Running: " << ToPaseParameterConstant.string << "\n";
 	const auto result = parse<ToPaseParameterConstant, ParserParameterType>(debug);
 	if(result.has_value() == false)
 	{
@@ -35,8 +36,7 @@ void check_parse(std::initializer_list<std::string> keys, auto expected)
 				<< ToPaseParameterConstant.string 
 				<< "\n";
 	}
-	else
-	{
+	else if(debug == true) {
 		std::cout << "Result: \n"
 				<< "\tFull Result: " << result.value() << "\n";
 	}
@@ -133,7 +133,6 @@ TEST(ParseTemplateBinding, ParseNestedBindings)
 			TemplateBindingParser
 		>();
 	CHECK((nestedList.has_value() == true));
-	//debug = true;
 	check_parse<
 			TemplateBindingParser, 
 			FixedString{"[with xyz = abc; vv = \"ww\"; "
@@ -141,7 +140,6 @@ TEST(ParseTemplateBinding, ParseNestedBindings)
 						"test = 12]"
 					}
 		>("derp", nestedList);
-	debug = false;
 	check_parse<
 			TemplateBindingParser, 
 			FixedString{"[with xyz = abc; vv = \"ww\"; "
@@ -149,13 +147,11 @@ TEST(ParseTemplateBinding, ParseNestedBindings)
 						"derp = [with herp = flerp; kerp = 3]]"
 					}
 		>("derp", nestedList);
-	//debug = true;
 	const auto nestedNestedListTwoElement = parse<
 			FixedString{"[with derp = [with herp = flerp; kerp = 3]; hundred = 100]"}, 
 			TemplateBindingParser
 		>();
 	CHECK((nestedNestedListTwoElement.has_value() == true));
-	////std::cout << "TRY PARSE\n";
 	check_parse<
 			TemplateBindingParser, 
 			FixedString{"[with xyz = abc; vv = \"ww\"; "
@@ -164,16 +160,5 @@ TEST(ParseTemplateBinding, ParseNestedBindings)
 						"beep = boop]"
 					}
 		>("nonsense", nestedNestedListTwoElement);
-	
-	
-	
-	//std::cout << "Actual: " << parse<
-	//			FixedString{"[with xyz = abc; vv = \"ww\"; "
-	//					"test = 12; "
-	//					"nonsense = [with derp = [with herp = flerp; kerp = 3]]]"
-	//				}, 
-	//			TemplateBindingParser
-	//	>().value() << "\n";
-	//std::cout << "Expected: " << nestedNestedListSingleElement.value() << "\n";
 };
 

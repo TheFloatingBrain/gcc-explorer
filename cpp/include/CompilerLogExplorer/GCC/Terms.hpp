@@ -101,11 +101,10 @@ namespace CompilerLogExplorer::GCC
 	constexpr static const auto bindingData = ctpg::nterm<json>("BindingData");
 	constexpr static const auto bindingArgument = ctpg::nterm<json>("BindingArgument");
 	constexpr static const auto squareBracketScope = ctpg::nterm<std::string>("SquareBracketScope");
+	constexpr static const auto bindingListScope = ctpg::nterm<json>("bindingListScope");
 	//constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
 	//constexpr static const auto parentBindingList = ctpg::nterm<ParentList>("ParentSpecializationBindingList");
 	constexpr static const auto bindingValue = ctpg::nterm<std::string>("BindingValue");
-	struct ListArgumentTerminator {};
-	constexpr static const auto listArgumentTerminator = ctpg::nterm<ListArgumentTerminator>("ListArgumentTerminator");
 
 }
 

@@ -47,8 +47,8 @@ namespace CompilerLogExplorer::GCC
 						bindingList, 
 						bindingData, 
 						bindingArgument, 
-						listArgumentTerminator, 
-						squareBracketScope
+						squareBracketScope, 
+						bindingListScope
 					), 
 				ctpg::rules(
 						cppAtom(cppIdentifier) >= [](auto identifier) {
@@ -87,65 +87,31 @@ namespace CompilerLogExplorer::GCC
 						bindingValue(bindingValue, cppAtom) >= [](auto value, auto atom) {
 							return value + std::string{atom};
 						}, 
-						bindingList(beginSpecializationList) >= [](auto) {
-							return ParentList{};
+						bindingListScope(beginSpecializationList) >= [](auto) {
+							return json{};
 						}, 
-						bindingList(
-								bindingList, 
-								bindingValue, 
-								equalTerm, 
-								beginSpecializationList
-							) 
-						>= [](auto list, auto parameter, auto, auto) {
-							return ParentList(list, parameter);
-						}, 
-						bindingList(
-								bindingList, 
-								bindingValue, 
-								equalTerm, 
-								bindingValue, 
-								semiColonTerm
-							) 
-						>= [](auto list, auto parameter, auto, auto argument, auto) {
-							list.data[parameter] = argument;
-							return list;
-						}, 
-						bindingArgument(
-								bindingList, 
-								bindingValue, 
-								equalTerm, 
-								bindingValue, 
-								rightSquareBracket
-							) 
-						>= [](auto list, auto parameter, auto, auto argument, auto) {
-							return fromParent(list, parameter, argument);
-						}, 
-						bindingData(
-								bindingData, 
-								bindingValue, 
-								equalTerm, 
-								bindingArgument
-							)
-						>= [](auto list, auto parameter, auto, auto argument) {
-							list[parameter] = argument;
-							return list;
-							//return fromParent(list, parameter, argument);
-						}, 
-						bindingData(bindingData, bindingValue, equalTerm, bindingValue, semiColonTerm) 
+						bindingListScope(bindingListScope, bindingValue, equalTerm, bindingValue, semiColonTerm)
 						>= [](auto list, auto parameter, auto, auto argument, auto) {
 							list[parameter] = argument;
 							return list;
 						}, 
-						bindingList(bindingData, semiColonTerm) >= [](auto list, auto) {
-							ParentList newList = {};
-							newList.data = list;
-							return newList;
-						}, 
-						bindingData(bindingData, rightSquareBracket) >= [](auto list, auto) {
+						bindingListScope(bindingListScope, bindingValue, equalTerm, bindingArgument, semiColonTerm)
+						>= [](auto list, auto parameter, auto, auto argument, auto) {
+							list[parameter] = argument;
 							return list;
 						}, 
-						bindingData(bindingArgument) >= [](auto list) {
+						bindingArgument(bindingListScope, bindingValue, equalTerm, bindingValue, rightSquareBracket)
+						>= [](auto list, auto parameter, auto, auto argument, auto) {
+							list[parameter] = argument;
 							return list;
+						}, 
+						bindingArgument(bindingListScope, bindingValue, equalTerm, bindingArgument, rightSquareBracket)
+						>= [](auto list, auto parameter, auto, auto argument, auto) {
+							list[parameter] = argument;
+							return list;
+						}, 
+						bindingData(bindingArgument) >= [](auto data) {
+							return data;
 						}
 					)
 			);
