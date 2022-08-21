@@ -133,7 +133,7 @@ TEST(ParseTemplateBinding, ParseNestedBindings)
 			TemplateBindingParser
 		>();
 	CHECK((nestedList.has_value() == true));
-	//debug = true;
+	debug = true;
 	check_parse<
 			TemplateBindingParser, 
 			FixedString{"[with xyz = abc; vv = \"ww\"; "

@@ -73,23 +73,34 @@ namespace CompilerLogExplorer::GCC
 	
 	constexpr static const auto beginSpecializationListPattern = FixedString{"\\[with"};
 	constexpr static const auto identifierPattern = FixedString{"[a-zA-Z_$][a-zA-Z_$0-9]+"};
-	constexpr static const auto operatorPattern = FixedString{"[\\.<>,+-/*[,\\\\'\\\":~!#%^&()|]+"};
+	constexpr static const auto operatorPattern = FixedString{"[\\.<>,+-/*,\\\\:~!#%^&()|]+"};
+	constexpr static const auto stringPattern = FixedString{"\"([^\"]|\\\")+\""};
+	constexpr static const auto characterPattern = FixedString{"\'([^\"\']|\\\"|\\\')\'"};
+
 	constexpr static const auto numberPattern = FixedString{"[0-9]+"};
 	
 	constexpr static const ctpg::regex_term<identifierPattern.string> cppIdentifier("C++Identifier");
 	constexpr static const ctpg::regex_term<operatorPattern.string> cppOperator("C++Operator");
 	constexpr static const ctpg::regex_term<numberPattern.string> cppNumber("C++Number");
-	constexpr static const ctpg::regex_term<beginSpecializationListPattern.string> beginSpecializationList("BeginSpecializationList");
+	constexpr static const ctpg::regex_term<characterPattern.string> cppCharacter("C++Character");
+	constexpr static const ctpg::regex_term<stringPattern.string> cppString("C++String");
+	constexpr static const ctpg::regex_term<beginSpecializationListPattern.string> beginSpecializationList("BeginSpecializationList", 10);
 
-	constexpr static const auto semiColonTerm = ctpg::char_term(';', 10, ctpg::associativity::ltor);
+	constexpr static const auto semiColonTerm = ctpg::char_term(';');//, 1, ctpg::associativity::ltor);
 	constexpr static const auto equalTerm = ctpg::char_term('=');
-	constexpr static const auto endSquareBracketTerm = ctpg::char_term(']');
+
+	constexpr static const auto leftSquareBracket = ctpg::char_term('[');
+	constexpr static const auto rightSquareBracket = ctpg::char_term(']');
+	//constexpr static const auto rightCurleyBracket = ctpg::char_term('}');
+	//constexpr static const auto rightAngleBracket = ctpg::char_term('>');
+	//constexpr static const auto rightParenthesisBracket = ctpg::char_term(')');
 	
 	constexpr static const auto cppAtom = ctpg::nterm<json>("C++Atom");
 	constexpr static const auto binding = ctpg::nterm<json>("Binding");
 	constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
 	constexpr static const auto bindingData = ctpg::nterm<json>("BindingData");
 	constexpr static const auto bindingArgument = ctpg::nterm<json>("BindingArgument");
+	constexpr static const auto squareBracketScope = ctpg::nterm<std::string>("SquareBracketScope");
 	//constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
 	//constexpr static const auto parentBindingList = ctpg::nterm<ParentList>("ParentSpecializationBindingList");
 	constexpr static const auto bindingValue = ctpg::nterm<std::string>("BindingValue");

@@ -34,8 +34,11 @@ namespace CompilerLogExplorer::GCC
 						beginSpecializationList, 
 						equalTerm, 
 						semiColonTerm, 
-						endSquareBracketTerm, 
-						cppNumber
+						leftSquareBracket, 
+						rightSquareBracket, 
+						cppNumber, 
+						cppCharacter, 
+						cppString
 					), 
 				ctpg::nterms(
 						cppAtom, 
@@ -44,7 +47,8 @@ namespace CompilerLogExplorer::GCC
 						bindingList, 
 						bindingData, 
 						bindingArgument, 
-						listArgumentTerminator
+						listArgumentTerminator, 
+						squareBracketScope
 					), 
 				ctpg::rules(
 						cppAtom(cppIdentifier) >= [](auto identifier) {
@@ -56,15 +60,32 @@ namespace CompilerLogExplorer::GCC
 						cppAtom(cppNumber) >= [](auto number) {
 							return std::string{number};
 						}, 
+						cppAtom(cppString) >= [](auto string) {
+							return std::string{string};
+						}, 
+						cppAtom(cppCharacter) >= [](auto character) {
+							return std::string{character};
+						}, 
+						squareBracketScope(leftSquareBracket) >= [](auto) {
+							return std::string{"["};
+						}, 
+						squareBracketScope(squareBracketScope, cppAtom) >= [](auto scope, auto atom) {
+							return scope + std::string{atom};
+						}, 
+						bindingValue(squareBracketScope, rightSquareBracket) >= [](auto scope, auto) {
+							return scope + std::string{"]"};
+						}, 
+						bindingValue(bindingValue, squareBracketScope, rightSquareBracket) >= [](auto value, auto scope, auto) {
+							return value + scope + std::string{"]"};
+						}, 
+						bindingValue(squareBracketScope) >= [](auto scope) {
+							return scope;
+						}, 
 						bindingValue(cppAtom) >= [](auto atom) {
 							return atom;
 						}, 
 						bindingValue(bindingValue, cppAtom) >= [](auto value, auto atom) {
 							return value + std::string{atom};
-						}, 
-						bindingValue(bindingValue, endSquareBracketTerm) 
-						>= [](auto value, auto bracket) {
-							return value + std::string{bracket};
 						}, 
 						bindingList(beginSpecializationList) >= [](auto) {
 							return ParentList{};
@@ -94,7 +115,7 @@ namespace CompilerLogExplorer::GCC
 								bindingValue, 
 								equalTerm, 
 								bindingValue, 
-								endSquareBracketTerm
+								rightSquareBracket
 							) 
 						>= [](auto list, auto parameter, auto, auto argument, auto) {
 							return fromParent(list, parameter, argument);
@@ -104,9 +125,10 @@ namespace CompilerLogExplorer::GCC
 								bindingValue, 
 								equalTerm, 
 								bindingArgument, 
+								rightSquareBracket, 
 								semiColonTerm
 							)
-						>= [](auto list, auto parameter, auto, auto argument, auto) {
+						>= [](auto list, auto parameter, auto, auto argument, auto, auto) {
 							list[parameter] = argument;
 							return list;
 							//return fromParent(list, parameter, argument);
@@ -114,109 +136,7 @@ namespace CompilerLogExplorer::GCC
 						bindingData(bindingArgument) >= [](auto list) {
 							return list;
 						}
-					
-
-						
-				//Good?
-						//bindingArgument(
-						//		bindingList, 
-						//		bindingValue, 
-						//		equalTerm, 
-						//		bindingValue, 
-						//		endSquareBracketTerm, 
-						//		semiColonTerm
-						//	) 
-						//>= [](auto list, auto parameter, auto, auto argument, auto, auto)
-						//{
-						//	std::cout << "l.p: " << list.parent << "\n"
-						//			<< "l.d: " << list.data << "\n"
-						//			<< "l.pn: " << (list.parameterName.has_value() ? list.parameterName.value() : "<none>") << "\n"
-						//			<< "p: " << parameter << "\n"
-						//			<< "a: " << argument << "\n";
-						//	//list.data[parameter] = argument;
-						//	return fromParent(list, parameter, argument);
-						//}//, 
-				)
-	//			////////////////////
-	//					parentBindingList(
-	//							bindingList, 
-	//							bindingValue, 
-	//							equalTerm, 
-	//							beginSpecializationList
-	//						)
-	//					>= [](auto list, auto parameter, auto, auto) {
-	//							return ParentList(list, parameter);
-	//					}, 
-	//					parentBindingList(
-	//							parentBindingList, 
-	//							bindingValue, 
-	//							equalTerm, 
-	//							beginSpecializationList
-	//						)
-	//					>= [](auto list, auto parameter, auto, auto) {
-	//						std::cout << "Creating nested nested list\n";
-	//						return ParentList(list, parameter);
-	//					}, 
-	//					bindingList(
-	//							parentBindingList, 
-	//							bindingValue, 
-	//							equalTerm, 
-	//							bindingValue, 
-	//							endSquareBracketTerm, 
-	//							semiColonTerm
-	//						)
-	//					>= [](auto parent, auto parameter, auto, auto argument, auto, auto) {
-	//						return fromParent(parent, parameter, argument);
-	//					}, 
-	//			//
-	//					parentBindingList(
-	//							parentBindingList, 
-	//							bindingValue, 
-	//							equalTerm, 
-	//							bindingValue, 
-	//							semiColonTerm
-	//						) 
-	//					>= [](auto list, auto parameter, auto, auto argument, auto) {
-	//						std::cout << "l.p: " << list.parent << "\n"
-	//								<< "l.d: " << list.data << "\n"
-	//								<< "l.pn: " << list.parameterName << "\n"
-	//								<< "p: " << parameter << "\n"
-	//								<< "a: " << argument << "\n";
-	//						return fromParent(list, parameter, argument);
-	//						//list.data[parameter] = argument;
-	//						//return list;
-	//					}//, 
-				//
-						//bindingList(
-						//		parentBindingList, 
-						//		bindingValue, 
-						//		equalTerm, 
-						//		bindingValue, 
-						//		endSquareBracketTerm, 
-						//		endSquareBracketTerm
-						//	)
-						//>= [](auto parent, auto parameter, auto, auto argument, auto, auto) {
-						//	std::cout << "end0\n";
-						//	return fromParent(parent, parameter, argument);
-						//}//, 
-				//
-						//parentBindingList(
-						//		parentBindingList, 
-						//		bindingValue, 
-						//		equalTerm, 
-						//		bindingValue, 
-						//		endSquareBracketTerm, 
-						//		endSquareBracketTerm
-						//	)
-						//>= [](auto parent, auto parameter, auto, auto argument, auto, auto) {
-						//	std::cout << "end1\n";
-						//	return fromParent(parent, parameter, argument);
-						//}, 
-						//bindingList(parentBindingList) >= [](auto list) {
-						//	std::cout << "The end\n";
-						//	list.parent[list.parameterName] = list.data;
-						//	return list.parent;
-						//}
+					)
 			);
 	};
 
