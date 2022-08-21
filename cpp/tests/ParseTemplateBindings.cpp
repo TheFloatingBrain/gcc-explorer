@@ -88,7 +88,6 @@ TEST_GROUP(ParseTemplateBinding) {};
 
 TEST(ParseTemplateBinding, ParseBindings)
 {
-	//debug = true;
 	check_parse<
 			TemplateBindingParser, 
 			FixedString{"[with xyz = abc]"}, 

@@ -98,16 +98,6 @@ namespace CompilerLogExplorer::GCC
 			);
 	};
 
-	template<auto ToPaseParameterConstant, typename ParserParameterType>
-	static const auto parse(bool verbose = false)
-	{
-		const auto result = ParserParameterType::parser.parse(
-				verbose == true ? ctpg::parse_options{}.set_verbose() : ctpg::parse_options{}, 
-				ctpg::buffers::cstring_buffer{ToPaseParameterConstant.string}, 
-				std::cerr
-			);
-		return result;
-	}
 }
 
 #endif // COMPILER__LOG__EXPLORER__GCC__PARSE__TEMPLATE__BINDING__HPP__INCLUDE__GUARD

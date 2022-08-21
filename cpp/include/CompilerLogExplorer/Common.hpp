@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <ranges>
 #include <variant>
+#include <filesystem>
 
 #include <cctype>
 
