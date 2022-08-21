@@ -160,5 +160,34 @@ TEST(ParseTemplateBinding, ParseNestedBindings)
 						"beep = boop]"
 					}
 		>("nonsense", nestedNestedListTwoElement);
+	check_parse<
+			TemplateBindingParser, 
+			FixedString{"[with xyz = abc; vv = \"ww\"; "
+						"test = 12; "
+						"beep = boop;"
+						"nonsense = [with derp = [with herp = flerp; kerp = 3]; hundred = 100]]"
+					}
+		>("nonsense", nestedNestedListTwoElement);
+	const auto nestedNestedListTwoElementAndBracketScope = parse<
+			FixedString{"[with derp = [with herp = [flerp]; kerp = 3]; hundred = 100]"}, 
+			TemplateBindingParser
+		>();
+	CHECK((nestedNestedListTwoElementAndBracketScope.has_value() == true));
+	check_parse<
+			TemplateBindingParser, 
+			FixedString{"[with xyz = abc; vv = \"ww\"; "
+						"test = 12; "
+						"beep = boop;"
+						"nonsense = [with derp = [with herp = [flerp]; kerp = 3]; hundred = 100]]"
+					}
+		>("nonsense", nestedNestedListTwoElementAndBracketScope);
+	check_parse<
+			TemplateBindingParser, 
+			FixedString{"[with xyz = abc; vv = \"ww\"; "
+						"test = 12; "
+						"nonsense = [with derp = [with herp = [flerp]; kerp = 3]; hundred = 100];"
+						"beep = boop]"
+					}
+		>("nonsense", nestedNestedListTwoElementAndBracketScope);
 };
 

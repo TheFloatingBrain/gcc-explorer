@@ -8,24 +8,6 @@ namespace CompilerLogExplorer::GCC
 {
 	struct TemplateBindingParser
 	{
-		template<typename ParentParameterType = json>
-		constexpr static const auto fromParent(auto parent, auto parameter, auto argument)
-		{
-			ParentList list = parent;
-			std::cout << "LIST DATA: " << list.data << "\n";
-			list.data[parameter] = argument;
-			if(list.parameterName.has_value() == true)
-			{
-				auto& parentData = list.parent
-						[ParentList::parentParameter]
-						[ParentList::dataParameter];
-			std::cout << "LIST PARENT: " << parentData << "\n";
-				parentData[list.parameterName.value()] = list.data;
-				return parentData;
-
-			}
-			return list.data;
-		}
 		constexpr const static auto parser = ctpg::parser(
 				bindingData, 
 				ctpg::terms(
@@ -44,7 +26,6 @@ namespace CompilerLogExplorer::GCC
 						cppAtom, 
 						binding, 
 						bindingValue, 
-						bindingList, 
 						bindingData, 
 						bindingArgument, 
 						squareBracketScope, 
