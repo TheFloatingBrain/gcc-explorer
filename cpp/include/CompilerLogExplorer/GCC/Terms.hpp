@@ -7,12 +7,62 @@ namespace CompilerLogExplorer::GCC
 {
 	using json = nlohmann::json;
 
+	enum class ParentListTag {
+		Json, ParentList
+	};
+
+	struct ParentList;
+
+	void to_json(json& data, const ParentList& list);
+	void from_json(const json& data, ParentList& list);
+
 	struct ParentList
 	{
+		constexpr static const char parentParameter[] = "parent";
+		constexpr static const char parameterNameParameter[] ="parameterName";
+		constexpr static const char dataParameter[] = "data";
+		constexpr static const char tagParameter[] = "tag";
+
 		json parent;
-		std::string parameterName;
+		std::optional<std::string> parameterName;
 		json data;
+		ParentListTag tag;
+		ParentList() {}
+		explicit ParentList(json parent, std::string parameterName) noexcept 
+				: parent(json{{parentParameter, parent}}), 
+				parameterName(parameterName), 
+				data({}), 
+				tag(ParentListTag::Json) {
+			std::cout << "Json Parent List\n";
+		}
+		explicit ParentList(ParentList parent, std::string parameterName) noexcept 
+				: parent(json{{parentParameter, parent}}), 
+				parameterName(parameterName), 
+				data({}), 
+				tag(ParentListTag::ParentList) {
+			std::cout << "Parent List Parent List\n";
+		}
 	};
+
+	void to_json(json& data, const ParentList& list)
+	{
+		json newData = {};
+		newData[ParentList::parentParameter] = list.parent;
+		if(list.parameterName.has_value() == true)
+			newData[ParentList::parameterNameParameter] = list.parameterName.value();
+		newData[ParentList::dataParameter] = list.data;
+		newData[ParentList::tagParameter] = list.tag;
+		data = newData;
+	}
+
+	void from_json(const json& data, ParentList& list)
+	{
+		list.parent = data[ParentList::parentParameter];
+		if(data.contains(ParentList::parameterNameParameter) == true)
+		list.parameterName = std::string{data[ParentList::parameterNameParameter]};
+		list.data = data[ParentList::dataParameter];
+		list.tag = data[ParentList::tagParameter];
+	}
 	
 	constexpr static const auto bindingListBegin = FixedString{"[with"};
 	constexpr static const auto bindingListEnd = FixedString{"]"};
@@ -33,8 +83,8 @@ namespace CompilerLogExplorer::GCC
 	
 	constexpr static const auto cppAtom = ctpg::nterm<json>("C++Atom");
 	constexpr static const auto binding = ctpg::nterm<json>("Binding");
-	constexpr static const auto bindingList = ctpg::nterm<json>("SpecializationBindingList");
-	constexpr static const auto parentBindingList = ctpg::nterm<ParentList>("ParentSpecializationBindingList");
+	constexpr static const auto bindingList = ctpg::nterm<ParentList>("SpecializationBindingList");
+	//constexpr static const auto parentBindingList = ctpg::nterm<ParentList>("ParentSpecializationBindingList");
 	constexpr static const auto bindingValue = ctpg::nterm<std::string>("BindingValue");
 }
 

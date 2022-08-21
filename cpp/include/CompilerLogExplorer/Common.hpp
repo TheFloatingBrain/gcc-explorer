@@ -5,6 +5,8 @@
 #include <sstream>
 #include <algorithm>
 #include <ranges>
+#include <variant>
+
 #include <cctype>
 
 #include <ctpg/ctpg.hpp>
