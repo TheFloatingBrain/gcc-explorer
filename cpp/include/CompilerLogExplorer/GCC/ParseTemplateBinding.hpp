@@ -131,7 +131,17 @@ namespace CompilerLogExplorer::GCC
 							return list;
 							//return fromParent(list, parameter, argument);
 						}, 
-						bindingData(bindingArgument, semiColonTerm) >= [](auto list, auto) {
+						bindingData(bindingData, bindingValue, equalTerm, bindingValue, semiColonTerm) 
+						>= [](auto list, auto parameter, auto, auto argument, auto) {
+							list[parameter] = argument;
+							return list;
+						}, 
+						bindingList(bindingData, semiColonTerm) >= [](auto list, auto) {
+							ParentList newList = {};
+							newList.data = list;
+							return newList;
+						}, 
+						bindingData(bindingData, rightSquareBracket) >= [](auto list, auto) {
 							return list;
 						}, 
 						bindingData(bindingArgument) >= [](auto list) {
