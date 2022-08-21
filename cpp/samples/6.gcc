@@ -1,0 +1,10 @@
+[ 40%] Built target libwarp
+Consolidate compiler generated dependencies of target test
+[ 60%] Building CXX object CMakeFiles/test.dir/Test/Main.cpp.o
+/root/workdir/Test/Main.cpp:45:25: error: ‘real’ was not declared in this scope
+   45 |                         real,
+      |                         ^~~~
+make[3]: *** [CMakeFiles/test.dir/build.make:76: CMakeFiles/test.dir/Test/Main.cpp.o] Error 1
+make[2]: *** [CMakeFiles/Makefile2:111: CMakeFiles/test.dir/all] Error 2
+make[1]: *** [CMakeFiles/Makefile2:118: CMakeFiles/test.dir/rule] Error 2
+make: *** [Makefile:137: test] Error 2

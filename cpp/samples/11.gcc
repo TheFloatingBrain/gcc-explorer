@@ -1,0 +1,59 @@
+In file included from /root/workdir/Include/Warp/Parsing/NumericLiterals.hpp:2,
+                 from /root/workdir/Test/NumericLiterals.cpp:1:
+/root/workdir/Include/Warp/Parsing/Terms.hpp: In instantiation of ‘struct Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc>’:
+/root/workdir/Include/Warp/Parsing/Terms.hpp:129:62:   required from ‘consteval auto Warp::Parsing::get_term_with_tag() [with bool ErrorOnNoMatchParameterConstant = false; auto TagParameterConstant = Warp::Parsing::NumericLiteral::Whole; CurrentParameterType = TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc>; TermParameterTypes = {}]’
+/root/workdir/Include/Warp/Parsing/Terms.hpp:145:6:   required from ‘consteval auto Warp::Parsing::get_term_with_tag() [with bool ErrorOnNoMatchParameterConstant = false; auto TagParameterConstant = Warp::Parsing::NumericLiteral::Whole; CurrentParameterType = TreeTerm<Warp::Parsing::NumericLiteral::Digits, RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>; TermParameterTypes = {TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc>}]’
+/root/workdir/Include/Warp/Parsing/Terms.hpp:186:7:   required from ‘static consteval auto Warp::Parsing::Terms<PreviousParameterType, PrecedenceParameterConstant, TermParameterTypes>::get_term() [with auto TagParameterConstant = Warp::Parsing::NumericLiteral::Whole; PreviousParameterType = void; auto PrecedenceParameterConstant = 0; TermParameterTypes = {Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc>}]’
+/root/workdir/Include/Warp/Parsing/Terms.hpp:194:46:   required from ‘constexpr const auto Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >::term<Warp::Parsing::NumericLiteral::Whole>’
+/root/workdir/Include/Warp/Parsing/NumericLiterals.hpp:70:40:   required from ‘constexpr const auto Warp::Parsing::NumericLiteralParser<Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >, Warp::Parsing::NumericLiteralTypeResolver>::whole’
+/root/workdir/Include/Warp/Parsing/NumericLiterals.hpp:69:31:   required from ‘struct Warp::Parsing::NumericLiteralParser<Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >, Warp::Parsing::NumericLiteralTypeResolver>’
+/root/workdir/Test/NumericLiterals.cpp:19:31:   required from here
+/root/workdir/Include/Warp/Parsing/Terms.hpp:36:23: error: wrong number of template arguments (3, should be 2)
+   36 |                 using InjectedTermType = TermParameterTemplate<
+      |                       ^~~~~~~~~~~~~~~~
+In file included from /root/workdir/Include/Warp/Parsing/NumericLiterals.hpp:1:
+/root/workdir/Include/Warp/Parsing/TermWrappers.hpp:78:16: note: provided for ‘template<class ValueParameterType, FixedString<...auto...> NameParameterConstant> struct Warp::Parsing::NonTerminalTerm’
+   78 |         struct NonTerminalTerm
+      |                ^~~~~~~~~~~~~~~
+/root/workdir/Include/Warp/Parsing/Terms.hpp: In substitution of ‘template<auto TagParameterConstant, template<class, auto ...<anonymous> > class TermParameterTemplate, class ParameterType, auto RequiredTermParameterConstants> template<int PrecedenceParameterConstant> using InjectedTermType = TermParameterTemplate<ParameterType, RequiredTermParameterConstants, PrecedenceParameterConstant> [with int PrecedenceParameterConstant = 0; auto TagParameterConstant = Warp::Parsing::NumericLiteral::Whole; TermParameterTemplate = Warp::Parsing::NonTerminalTerm; ParameterType = long unsigned int; auto RequiredTermParameterConstants = ctpg::associativity::no_assoc]’:
+/root/workdir/Include/Warp/Parsing/Terms.hpp:44:7:   required from ‘constexpr const auto Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc>::term<0>’
+/root/workdir/Include/Warp/Parsing/Terms.hpp:196:17:   required from ‘constexpr const auto Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >::term<Warp::Parsing::NumericLiteral::Whole>’
+/root/workdir/Include/Warp/Parsing/NumericLiterals.hpp:70:40:   required from ‘constexpr const auto Warp::Parsing::NumericLiteralParser<Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >, Warp::Parsing::NumericLiteralTypeResolver>::whole’
+/root/workdir/Include/Warp/Parsing/NumericLiterals.hpp:69:31:   required from ‘struct Warp::Parsing::NumericLiteralParser<Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >, Warp::Parsing::NumericLiteralTypeResolver>’
+/root/workdir/Test/NumericLiterals.cpp:19:31:   required from here
+/root/workdir/Include/Warp/Parsing/Terms.hpp:36:23: error: wrong number of template arguments (3, should be 2)
+   36 |                 using InjectedTermType = TermParameterTemplate<
+      |                       ^~~~~~~~~~~~~~~~
+/root/workdir/Include/Warp/Parsing/TermWrappers.hpp:78:16: note: provided for ‘template<class ValueParameterType, FixedString<...auto...> NameParameterConstant> struct Warp::Parsing::NonTerminalTerm’
+   78 |         struct NonTerminalTerm
+      |                ^~~~~~~~~~~~~~~
+/root/workdir/Test/NumericLiterals.cpp:19:47: error: ‘term’ is not a member of ‘NumericLiteralParserTestType’ {aka ‘Warp::Parsing::NumericLiteralParser<Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >, Warp::Parsing::NumericLiteralTypeResolver>’}
+   19 |                 NumericLiteralParserTestType::term<ReduceToTagParameterConstant>,
+      |                                               ^~~~
+/root/workdir/Test/NumericLiterals.cpp:18:50: error: missing template arguments before ‘(’ token
+   18 | constexpr const static auto parser = ctpg::parser(
+      |                                                  ^
+/root/workdir/Test/NumericLiterals.cpp:19:47: error: ‘term’ is not a member of ‘NumericLiteralParserTestType’ {aka ‘Warp::Parsing::NumericLiteralParser<Warp::Parsing::Terms<void, 0, Warp::Parsing::TreeTerm<Warp::Parsing::NumericLiteral::Digits, Warp::Parsing::RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"}, Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>, Warp::Parsing::TypeTreeTerm<Warp::Parsing::NumericLiteral::Whole, Warp::Parsing::NonTerminalTerm, long unsigned int, ctpg::associativity::no_assoc> >, Warp::Parsing::NumericLiteralTypeResolver>’}
+   19 |                 NumericLiteralParserTestType::term<ReduceToTagParameterConstant>,
+      |                                               ^~~~
+/root/workdir/Test/NumericLiterals.cpp:19:81: error: expected primary-expression before ‘,’ token
+   19 |                 NumericLiteralParserTestType::term<ReduceToTagParameterConstant>,
+      |                                                                                 ^
+/root/workdir/Test/NumericLiterals.cpp:23:61: error: expected primary-expression before ‘>’ token
+   23 |                                 NumericLiteralParserTestType>::parse_whole
+      |                                                             ^
+/root/workdir/Test/NumericLiterals.cpp:23:64: error: ‘::parse_whole’ has not been declared
+   23 |                                 NumericLiteralParserTestType>::parse_whole
+      |                                                                ^~~~~~~~~~~
+In file included from /root/.conan/data/cpputest/4.0/_/_/package/7f06ab4d29b1f14af224d13dc05f362c6832ed41/include/CppUTest/TestHarness.h:40,
+                 from /root/workdir/Test/NumericLiterals.cpp:3:
+/root/workdir/Test/NumericLiterals.cpp: In function ‘void check_parse(auto:60, auto:61)’:
+/root/workdir/Test/NumericLiterals.cpp:42:66: error: expected ‘:’ before ‘;’ token
+   42 |                         ? parse_result.value() == expected_result;
+      |                                                                  ^
+/root/.conan/data/cpputest/4.0/_/_/package/7f06ab4d29b1f14af224d13dc05f362c6832ed41/include/CppUTest/UtestMacros.h:120:46: note: in definition of macro ‘CHECK_TRUE_LOCATION’
+  120 |   do { UtestShell::getCurrent()->assertTrue((condition), checkString, conditionString, text, file, line); } while(0)
+      |                                              ^~~~~~~~~
+/root/workdir/Test/NumericLiterals.cpp:41:9: note: in expansion of macro ‘CHECK’
+   41 |         CHECK((parse_result.has_value() == true)
+

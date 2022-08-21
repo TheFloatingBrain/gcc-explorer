@@ -1,0 +1,534 @@
+/usr/include/c++/9/pstl/parallel_impl.h:                                                  __extremum.compare_exchange_weak(__old, __k);
+/usr/include/c++/9/profile/impl/profiler_state.h:    return __atomic_compare_exchange_n(&_GLIBCXX_PROFILE_DATA(__state),
+/usr/include/c++/9/version:# define __cpp_lib_exchange_function 201304
+/usr/include/c++/9/tr1/shared_ptr.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, -1) == 1)
+/usr/include/c++/9/tr1/shared_ptr.h:	    if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count,
+/usr/include/c++/9/tr1/shared_ptr.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count, -1) == 1)
+/usr/include/c++/9/tr1/shared_ptr.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, 1) == 0)
+/usr/include/c++/9/tr1/shared_ptr.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, 1) == 0)
+/usr/include/c++/9/tr1/shared_ptr.h:      while (!__atomic_compare_exchange_n(&_M_use_count, &__count, __count + 1,
+/usr/include/c++/9/utility:#define __cpp_lib_exchange_function 201304
+/usr/include/c++/9/utility:    exchange(_Tp& __obj, _Up&& __new_val)
+/usr/include/c++/9/utility:    { return std::__exchange(__obj, std::forward<_Up>(__new_val)); }
+/usr/include/c++/9/ext/rc_string_base.h:	if (__exchange_and_add_dispatch(&_M_rep()->_M_info._M_refcount,
+/usr/include/c++/9/ext/stdio_sync_filebuf.h:#include <bits/move.h>   // For __exchange
+/usr/include/c++/9/ext/stdio_sync_filebuf.h:	_M_file = std::__exchange(__fb._M_file, nullptr);
+/usr/include/c++/9/ext/stdio_sync_filebuf.h:	_M_unget_buf = std::__exchange(__fb._M_unget_buf, traits_type::eof());
+/usr/include/c++/9/ext/atomicity.h:  // __exchange_and_add_dispatch
+/usr/include/c++/9/ext/atomicity.h:  __exchange_and_add(volatile _Atomic_word* __mem, int __val)
+/usr/include/c++/9/ext/atomicity.h:  __exchange_and_add(volatile _Atomic_word*, int) throw ();
+/usr/include/c++/9/ext/atomicity.h:  __exchange_and_add_single(_Atomic_word* __mem, int __val)
+/usr/include/c++/9/ext/atomicity.h:  __exchange_and_add_dispatch(_Atomic_word* __mem, int __val)
+/usr/include/c++/9/ext/atomicity.h:      return __exchange_and_add(__mem, __val);
+/usr/include/c++/9/ext/atomicity.h:      return __exchange_and_add_single(__mem, __val);
+/usr/include/c++/9/ext/atomicity.h:    return __exchange_and_add_single(__mem, __val);
+/usr/include/c++/9/parallel/compatibility.h:	return __atomic_compare_exchange_n(__ptr, &__comparand, __replacement,
+/usr/include/c++/9/bits/forward_list.h:       *  This exchanges the elements between two lists in constant
+/usr/include/c++/9/bits/shared_ptr_atomic.h:   *  @brief  Atomic exchange for shared_ptr objects.
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_exchange_explicit(shared_ptr<_Tp>* __p, shared_ptr<_Tp> __r,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_exchange(shared_ptr<_Tp>* __p, shared_ptr<_Tp> __r)
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_exchange_explicit(__p, std::move(__r),
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_exchange_explicit(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_exchange(__shared_ptr<_Tp, _Lp>* __p, __shared_ptr<_Tp, _Lp> __r)
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_exchange_explicit(__p, std::move(__r),
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong(shared_ptr<_Tp>* __p, shared_ptr<_Tp>* __v,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak(shared_ptr<_Tp>* __p, shared_ptr<_Tp>* __v,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_weak_explicit(__p, __v,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong_explicit(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak_explicit(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/9/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_weak_explicit(__p, __v,
+/usr/include/c++/9/bits/unordered_map.h:       *  This exchanges the elements between two %unordered_map in constant
+/usr/include/c++/9/bits/unordered_map.h:       *  This exchanges the elements between two %unordered_multimap in
+/usr/include/c++/9/bits/stl_multiset.h:       *  This exchanges the elements between two multisets in constant time.
+/usr/include/c++/9/bits/shared_ptr_base.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, -1) == 1)
+/usr/include/c++/9/bits/shared_ptr_base.h:	    if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count,
+/usr/include/c++/9/bits/shared_ptr_base.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count, -1) == 1)
+/usr/include/c++/9/bits/shared_ptr_base.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, 1) == 0)
+/usr/include/c++/9/bits/shared_ptr_base.h:      while (!__atomic_compare_exchange_n(&_M_use_count, &__count, __count + 1,
+/usr/include/c++/9/bits/shared_ptr_base.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, 1) == 0)
+/usr/include/c++/9/bits/shared_ptr_base.h:      while (!__atomic_compare_exchange_n(&_M_use_count, &__count, __count + 1,
+/usr/include/c++/9/bits/atomic_base.h:      exchange(__int_type __i,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_exchange_n(&_M_i, __i, int(__m));
+/usr/include/c++/9/bits/atomic_base.h:      exchange(__int_type __i,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_exchange_n(&_M_i, __i, int(__m));
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 1,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 1,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return compare_exchange_weak(__i1, __i2, __m,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return compare_exchange_weak(__i1, __i2, __m,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 0,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 0,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return compare_exchange_strong(__i1, __i2, __m,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/9/bits/atomic_base.h:	return compare_exchange_strong(__i1, __i2, __m,
+/usr/include/c++/9/bits/atomic_base.h:      exchange(__pointer_type __p,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_exchange_n(&_M_p, __p, int(__m));
+/usr/include/c++/9/bits/atomic_base.h:      exchange(__pointer_type __p,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_exchange_n(&_M_p, __p, int(__m));
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_p, &__p1, __p2, 0,
+/usr/include/c++/9/bits/atomic_base.h:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_p, &__p1, __p2, 0,
+/usr/include/c++/9/bits/unordered_set.h:       *  This exchanges the elements between two sets in constant time.
+/usr/include/c++/9/bits/unordered_set.h:       *  This exchanges the elements between two sets in constant time.
+/usr/include/c++/9/bits/stl_multimap.h:       *  This exchanges the elements between two multimaps in constant time.
+/usr/include/c++/9/bits/move.h:  // C++11 version of std::exchange for internal use.
+/usr/include/c++/9/bits/move.h:    __exchange(_Tp& __obj, _Up&& __new_val)
+/usr/include/c++/9/bits/stl_vector.h:       *  This exchanges the elements between two vectors in constant time.
+/usr/include/c++/9/bits/locale_classes.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_refcount, -1) == 1)
+/usr/include/c++/9/bits/locale_classes.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_refcount, -1) == 1)
+/usr/include/c++/9/bits/hashtable.h:	    auto __node = std::exchange(__nh._M_ptr, nullptr);
+/usr/include/c++/9/bits/basic_string.h:	      if (__gnu_cxx::__exchange_and_add_dispatch(&this->_M_refcount,
+/usr/include/c++/9/bits/stl_list.h:       *  This exchanges the elements between two lists in constant
+/usr/include/c++/9/bits/stl_set.h:       *  This exchanges the elements between two sets in constant
+/usr/include/c++/9/bits/atomic_futex.h:      if (_M_data.exchange(__val, __mo) & _Waiter_bit)
+/usr/include/c++/9/bits/fstream.tcc:    _M_mode(std::__exchange(__rhs._M_mode, ios_base::openmode(0))),
+/usr/include/c++/9/bits/fstream.tcc:    _M_buf(std::__exchange(__rhs._M_buf, nullptr)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_buf_size(std::__exchange(__rhs._M_buf_size, 1)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_buf_allocated(std::__exchange(__rhs._M_buf_allocated, false)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_reading(std::__exchange(__rhs._M_reading, false)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_writing(std::__exchange(__rhs._M_writing, false)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_pback_cur_save(std::__exchange(__rhs._M_pback_cur_save, nullptr)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_pback_end_save(std::__exchange(__rhs._M_pback_end_save, nullptr)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_pback_init(std::__exchange(__rhs._M_pback_init, false)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_ext_buf(std::__exchange(__rhs._M_ext_buf, nullptr)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_ext_buf_size(std::__exchange(__rhs._M_ext_buf_size, 0)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_ext_next(std::__exchange(__rhs._M_ext_next, nullptr)),
+/usr/include/c++/9/bits/fstream.tcc:    _M_ext_end(std::__exchange(__rhs._M_ext_end, nullptr))
+/usr/include/c++/9/bits/fstream.tcc:      _M_mode = std::__exchange(__rhs._M_mode, ios_base::openmode(0));
+/usr/include/c++/9/bits/fstream.tcc:      _M_buf = std::__exchange(__rhs._M_buf, nullptr);
+/usr/include/c++/9/bits/fstream.tcc:      _M_buf_size = std::__exchange(__rhs._M_buf_size, 1);
+/usr/include/c++/9/bits/fstream.tcc:      _M_buf_allocated = std::__exchange(__rhs._M_buf_allocated, false);
+/usr/include/c++/9/bits/fstream.tcc:      _M_ext_buf = std::__exchange(__rhs._M_ext_buf, nullptr);
+/usr/include/c++/9/bits/fstream.tcc:      _M_ext_buf_size = std::__exchange(__rhs._M_ext_buf_size, 0);
+/usr/include/c++/9/bits/fstream.tcc:      _M_ext_next = std::__exchange(__rhs._M_ext_next, nullptr);
+/usr/include/c++/9/bits/fstream.tcc:      _M_ext_end = std::__exchange(__rhs._M_ext_end, nullptr);
+/usr/include/c++/9/bits/fstream.tcc:      _M_reading = std::__exchange(__rhs._M_reading, false);
+/usr/include/c++/9/bits/fstream.tcc:      _M_writing = std::__exchange(__rhs._M_writing, false);
+/usr/include/c++/9/bits/fstream.tcc:      _M_pback_cur_save = std::__exchange(__rhs._M_pback_cur_save, nullptr);
+/usr/include/c++/9/bits/fstream.tcc:      _M_pback_end_save = std::__exchange(__rhs._M_pback_end_save, nullptr);
+/usr/include/c++/9/bits/fstream.tcc:      _M_pback_init = std::__exchange(__rhs._M_pback_init, false);
+/usr/include/c++/9/bits/stl_deque.h:       *  This exchanges the elements between two deques in constant time.
+/usr/include/c++/9/bits/ios_base.h:        int __res = __gnu_cxx::__exchange_and_add_dispatch(&_M_refcount, -1);
+/usr/include/c++/9/bits/stl_map.h:       *  This exchanges the elements between two maps in constant
+/usr/include/c++/9/atomic:    exchange(bool __i, memory_order __m = memory_order_seq_cst) noexcept
+/usr/include/c++/9/atomic:    { return _M_base.exchange(__i, __m); }
+/usr/include/c++/9/atomic:    exchange(bool __i,
+/usr/include/c++/9/atomic:    { return _M_base.exchange(__i, __m); }
+/usr/include/c++/9/atomic:    compare_exchange_weak(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    compare_exchange_weak(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    compare_exchange_weak(bool& __i1, bool __i2,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m); }
+/usr/include/c++/9/atomic:    compare_exchange_weak(bool& __i1, bool __i2,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m); }
+/usr/include/c++/9/atomic:    compare_exchange_strong(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    compare_exchange_strong(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    compare_exchange_strong(bool& __i1, bool __i2,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m); }
+/usr/include/c++/9/atomic:    compare_exchange_strong(bool& __i1, bool __i2,
+/usr/include/c++/9/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m); }
+/usr/include/c++/9/atomic:      exchange(_Tp __i, memory_order __m = memory_order_seq_cst) noexcept
+/usr/include/c++/9/atomic:	__atomic_exchange(std::__addressof(_M_i), std::__addressof(__i),
+/usr/include/c++/9/atomic:      exchange(_Tp __i,
+/usr/include/c++/9/atomic:	__atomic_exchange(std::__addressof(_M_i), std::__addressof(__i),
+/usr/include/c++/9/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/9/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/9/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/9/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/9/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i,
+/usr/include/c++/9/atomic:      { return compare_exchange_weak(__e, __i, __m,
+/usr/include/c++/9/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i,
+/usr/include/c++/9/atomic:      { return compare_exchange_weak(__e, __i, __m,
+/usr/include/c++/9/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/9/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/9/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/9/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/9/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i,
+/usr/include/c++/9/atomic:      { return compare_exchange_strong(__e, __i, __m,
+/usr/include/c++/9/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i,
+/usr/include/c++/9/atomic:      { return compare_exchange_strong(__e, __i, __m,
+/usr/include/c++/9/atomic:      exchange(__pointer_type __p,
+/usr/include/c++/9/atomic:      { return _M_b.exchange(__p, __m); }
+/usr/include/c++/9/atomic:      exchange(__pointer_type __p,
+/usr/include/c++/9/atomic:      { return _M_b.exchange(__p, __m); }
+/usr/include/c++/9/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/9/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/9/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:	return compare_exchange_weak(__p1, __p2, __m,
+/usr/include/c++/9/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:	return compare_exchange_weak(__p1, __p2, __m,
+/usr/include/c++/9/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/9/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/9/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:	return _M_b.compare_exchange_strong(__p1, __p2, __m,
+/usr/include/c++/9/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/9/atomic:	return _M_b.compare_exchange_strong(__p1, __p2, __m,
+/usr/include/c++/9/atomic:    atomic_exchange_explicit(atomic<_ITp>* __a, __atomic_val_t<_ITp> __i,
+/usr/include/c++/9/atomic:    { return __a->exchange(__i, __m); }
+/usr/include/c++/9/atomic:    atomic_exchange_explicit(volatile atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:    { return __a->exchange(__i, __m); }
+/usr/include/c++/9/atomic:    atomic_compare_exchange_weak_explicit(atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:    { return __a->compare_exchange_weak(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    atomic_compare_exchange_weak_explicit(volatile atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:    { return __a->compare_exchange_weak(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    atomic_compare_exchange_strong_explicit(atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:    { return __a->compare_exchange_strong(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    atomic_compare_exchange_strong_explicit(volatile atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:    { return __a->compare_exchange_strong(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/9/atomic:    atomic_exchange(atomic<_ITp>* __a, __atomic_val_t<_ITp> __i) noexcept
+/usr/include/c++/9/atomic:    { return atomic_exchange_explicit(__a, __i, memory_order_seq_cst); }
+/usr/include/c++/9/atomic:    atomic_exchange(volatile atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:    { return atomic_exchange_explicit(__a, __i, memory_order_seq_cst); }
+/usr/include/c++/9/atomic:    atomic_compare_exchange_weak(atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:      return atomic_compare_exchange_weak_explicit(__a, __i1, __i2,
+/usr/include/c++/9/atomic:    atomic_compare_exchange_weak(volatile atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:      return atomic_compare_exchange_weak_explicit(__a, __i1, __i2,
+/usr/include/c++/9/atomic:    atomic_compare_exchange_strong(atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:      return atomic_compare_exchange_strong_explicit(__a, __i1, __i2,
+/usr/include/c++/9/atomic:    atomic_compare_exchange_strong(volatile atomic<_ITp>* __a,
+/usr/include/c++/9/atomic:      return atomic_compare_exchange_strong_explicit(__a, __i1, __i2,
+/usr/include/c++/9/experimental/socket:      _M_sockfd(std::exchange(__rhs._M_sockfd, -1)),
+/usr/include/c++/9/experimental/socket:      _M_bits(std::exchange(__rhs._M_bits, {}))
+/usr/include/c++/9/experimental/socket:      _M_sockfd = std::exchange(__rhs._M_sockfd, -1);
+/usr/include/c++/9/experimental/socket:      _M_bits = std::exchange(__rhs._M_bits, {});
+/usr/include/c++/9/experimental/memory_resource:    return __get_default_resource().exchange(__r);
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     void atomic_exchange(shared_ptr<_Tp>* __p, shared_ptr<_Tp> __r)
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     { return std::atomic_exchange<_Tp>(__p, __r); }
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     atomic_exchange_explicit(const shared_ptr<_Tp>* __p,
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     { return std::atomic_exchange_explicit<_Tp>(__p, __r, __mo); }
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_weak(shared_ptr<_Tp>* __p,
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_weak<_Tp>(__p, __v, __w); }
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_strong(shared_ptr<_Tp>* __p,
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_strong<_Tp>(__p, __v, __w); }
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_weak_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_weak_explicit<_Tp>(__p, __v, __w,
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_strong_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/9/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_strong_explicit<_Tp>(__p, __v, __w,
+/usr/include/c++/9/shared_mutex:	return std::exchange(_M_pm, nullptr);
+/usr/include/c++/11/pstl/parallel_impl.h:                                                  __extremum.compare_exchange_weak(__old, __k);
+/usr/include/c++/11/version:# define __cpp_lib_exchange_function 201304
+/usr/include/c++/11/stop_token:	while (!_M_counter.compare_exchange_weak(__old, 0,
+/usr/include/c++/11/stop_token:	return _M_value.compare_exchange_weak(__curval, __curval | __newbits,
+/usr/include/c++/11/tr1/shared_ptr.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, -1) == 1)
+/usr/include/c++/11/tr1/shared_ptr.h:	    if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count,
+/usr/include/c++/11/tr1/shared_ptr.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count, -1) == 1)
+/usr/include/c++/11/tr1/shared_ptr.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, 1) == 0)
+/usr/include/c++/11/tr1/shared_ptr.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, 1) == 0)
+/usr/include/c++/11/tr1/shared_ptr.h:      while (!__atomic_compare_exchange_n(&_M_use_count, &__count, __count + 1,
+/usr/include/c++/11/utility:#define __cpp_lib_exchange_function 201304
+/usr/include/c++/11/utility:    exchange(_Tp& __obj, _Up&& __new_val)
+/usr/include/c++/11/utility:    { return std::__exchange(__obj, std::forward<_Up>(__new_val)); }
+/usr/include/c++/11/ext/rc_string_base.h:	if (__exchange_and_add_dispatch(&_M_rep()->_M_info._M_refcount,
+/usr/include/c++/11/ext/stdio_sync_filebuf.h:#include <bits/move.h>   // For __exchange
+/usr/include/c++/11/ext/stdio_sync_filebuf.h:	_M_file = std::__exchange(__fb._M_file, nullptr);
+/usr/include/c++/11/ext/stdio_sync_filebuf.h:	_M_unget_buf = std::__exchange(__fb._M_unget_buf, traits_type::eof());
+/usr/include/c++/11/ext/atomicity.h:  // __exchange_and_add_dispatch
+/usr/include/c++/11/ext/atomicity.h:  __exchange_and_add(volatile _Atomic_word* __mem, int __val)
+/usr/include/c++/11/ext/atomicity.h:  __exchange_and_add(volatile _Atomic_word*, int) _GLIBCXX_NOTHROW;
+/usr/include/c++/11/ext/atomicity.h:  __exchange_and_add_single(_Atomic_word* __mem, int __val)
+/usr/include/c++/11/ext/atomicity.h:  __exchange_and_add_dispatch(_Atomic_word* __mem, int __val)
+/usr/include/c++/11/ext/atomicity.h:      return __exchange_and_add_single(__mem, __val);
+/usr/include/c++/11/ext/atomicity.h:      return __exchange_and_add(__mem, __val);
+/usr/include/c++/11/parallel/compatibility.h:	return __atomic_compare_exchange_n(__ptr, &__comparand, __replacement,
+/usr/include/c++/11/bits/forward_list.h:       *  This exchanges the elements between two lists in constant
+/usr/include/c++/11/bits/shared_ptr_atomic.h:   *  @brief  Atomic exchange for shared_ptr objects.
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_exchange_explicit(shared_ptr<_Tp>* __p, shared_ptr<_Tp> __r,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_exchange(shared_ptr<_Tp>* __p, shared_ptr<_Tp> __r)
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_exchange_explicit(__p, std::move(__r),
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_exchange_explicit(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_exchange(__shared_ptr<_Tp, _Lp>* __p, __shared_ptr<_Tp, _Lp> __r)
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_exchange_explicit(__p, std::move(__r),
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong(shared_ptr<_Tp>* __p, shared_ptr<_Tp>* __v,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak(shared_ptr<_Tp>* __p, shared_ptr<_Tp>* __v,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_weak_explicit(__p, __v,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong_explicit(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_strong(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak_explicit(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_strong_explicit(__p, __v,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:    atomic_compare_exchange_weak(__shared_ptr<_Tp, _Lp>* __p,
+/usr/include/c++/11/bits/shared_ptr_atomic.h:      return std::atomic_compare_exchange_weak_explicit(__p, __v,
+/usr/include/c++/11/bits/semaphore_base.h:      return __atomic_impl::compare_exchange_strong(__counter,
+/usr/include/c++/11/bits/unordered_map.h:       *  This exchanges the elements between two %unordered_map in constant
+/usr/include/c++/11/bits/unordered_map.h:       *  This exchanges the elements between two %unordered_multimap in
+/usr/include/c++/11/bits/stl_multiset.h:       *  This exchanges the elements between two multisets in constant time.
+/usr/include/c++/11/bits/shared_ptr_base.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, -1) == 1)
+/usr/include/c++/11/bits/shared_ptr_base.h:	    if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count,
+/usr/include/c++/11/bits/shared_ptr_base.h:	if (__gnu_cxx::__exchange_and_add_dispatch(&_M_weak_count, -1) == 1)
+/usr/include/c++/11/bits/shared_ptr_base.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_use_count, 1) == 0)
+/usr/include/c++/11/bits/shared_ptr_base.h:      while (!__atomic_compare_exchange_n(&_M_use_count, &__count, __count + 1,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(__int_type __i,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_exchange_n(&_M_i, __i, int(__m));
+/usr/include/c++/11/bits/atomic_base.h:      exchange(__int_type __i,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_exchange_n(&_M_i, __i, int(__m));
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 1,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 1,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__i1, __i2, __m,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__i1, __i2, __m,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 0,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_i, &__i1, __i2, 0,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__i1, __i2, __m,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(__int_type& __i1, __int_type __i2,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__i1, __i2, __m,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(__pointer_type __p,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_exchange_n(&_M_p, __p, int(__m));
+/usr/include/c++/11/bits/atomic_base.h:      exchange(__pointer_type __p,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_exchange_n(&_M_p, __p, int(__m));
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_p, &__p1, __p2, 0,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange_n(&_M_p, &__p1, __p2, 0,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(_Tp* __ptr, _Val<_Tp> __desired, memory_order __m) noexcept
+/usr/include/c++/11/bits/atomic_base.h:	__atomic_exchange(__ptr, std::__addressof(__desired), __dest, int(__m));
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Tp* __ptr, _Val<_Tp>& __expected,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange(__ptr, std::__addressof(__expected),
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Tp* __ptr, _Val<_Tp>& __expected,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_compare_exchange(__ptr, std::__addressof(__expected),
+/usr/include/c++/11/bits/atomic_base.h:	while (!compare_exchange_weak(__ptr, __oldval, __newval, __m,
+/usr/include/c++/11/bits/atomic_base.h:	while (!compare_exchange_weak(__ptr, __oldval, __newval, __m,
+/usr/include/c++/11/bits/atomic_base.h:	while (!compare_exchange_weak(__ptr, __oldval, __newval,
+/usr/include/c++/11/bits/atomic_base.h:	while (!compare_exchange_weak(__ptr, __oldval, __newval,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(_Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:      { return __atomic_impl::exchange(&_M_fp, __desired, __m); }
+/usr/include/c++/11/bits/atomic_base.h:      exchange(_Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:      { return __atomic_impl::exchange(&_M_fp, __desired, __m); }
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_weak(&_M_fp,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_weak(&_M_fp,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_strong(&_M_fp,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_strong(&_M_fp,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(_Tp __desired, memory_order __m = memory_order_seq_cst)
+/usr/include/c++/11/bits/atomic_base.h:      { return __atomic_impl::exchange(_M_ptr, __desired, __m); }
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_weak(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_strong(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(_Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:      { return __atomic_impl::exchange(_M_ptr, __desired, __m); }
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_weak(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_strong(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Tp& __expected, _Tp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(_Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:      { return __atomic_impl::exchange(_M_ptr, __desired, __m); }
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_weak(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_strong(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Fp& __expected, _Fp __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      exchange(_Tp* __desired,
+/usr/include/c++/11/bits/atomic_base.h:      { return __atomic_impl::exchange(_M_ptr, __desired, __m); }
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Tp*& __expected, _Tp* __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_weak(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Tp*& __expected, _Tp* __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return __atomic_impl::compare_exchange_strong(_M_ptr,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_weak(_Tp*& __expected, _Tp* __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_weak(__expected, __desired, __order,
+/usr/include/c++/11/bits/atomic_base.h:      compare_exchange_strong(_Tp*& __expected, _Tp* __desired,
+/usr/include/c++/11/bits/atomic_base.h:	return compare_exchange_strong(__expected, __desired, __order,
+/usr/include/c++/11/bits/iterator_concepts.h:      __iter_exchange_move(_Xp&& __x, _Yp&& __y)
+/usr/include/c++/11/bits/iterator_concepts.h:		= __iter_exchange_move(std::declval<_Up>(),
+/usr/include/c++/11/bits/iterator_concepts.h:	    *__e1 = __iter_exchange_move(__e2, __e1);
+/usr/include/c++/11/bits/unordered_set.h:       *  This exchanges the elements between two sets in constant time.
+/usr/include/c++/11/bits/unordered_set.h:       *  This exchanges the elements between two sets in constant time.
+/usr/include/c++/11/bits/stl_multimap.h:       *  This exchanges the elements between two multimaps in constant time.
+/usr/include/c++/11/bits/move.h:  // C++11 version of std::exchange for internal use.
+/usr/include/c++/11/bits/move.h:    __exchange(_Tp& __obj, _Up&& __new_val)
+/usr/include/c++/11/bits/stl_vector.h:       *  This exchanges the elements between two vectors in constant time.
+/usr/include/c++/11/bits/locale_classes.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_refcount, -1) == 1)
+/usr/include/c++/11/bits/locale_classes.h:      if (__gnu_cxx::__exchange_and_add_dispatch(&_M_refcount, -1) == 1)
+/usr/include/c++/11/bits/basic_string.h:	      if (__gnu_cxx::__exchange_and_add_dispatch(&this->_M_refcount,
+/usr/include/c++/11/bits/stl_list.h:       *  This exchanges the elements between two lists in constant
+/usr/include/c++/11/bits/stl_set.h:       *  This exchanges the elements between two sets in constant
+/usr/include/c++/11/bits/atomic_futex.h:      if (_M_data.exchange(__val, __mo) & _Waiter_bit)
+/usr/include/c++/11/bits/fstream.tcc:    _M_mode(std::__exchange(__rhs._M_mode, ios_base::openmode(0))),
+/usr/include/c++/11/bits/fstream.tcc:    _M_buf(std::__exchange(__rhs._M_buf, nullptr)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_buf_size(std::__exchange(__rhs._M_buf_size, 1)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_buf_allocated(std::__exchange(__rhs._M_buf_allocated, false)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_reading(std::__exchange(__rhs._M_reading, false)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_writing(std::__exchange(__rhs._M_writing, false)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_pback_cur_save(std::__exchange(__rhs._M_pback_cur_save, nullptr)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_pback_end_save(std::__exchange(__rhs._M_pback_end_save, nullptr)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_pback_init(std::__exchange(__rhs._M_pback_init, false)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_ext_buf(std::__exchange(__rhs._M_ext_buf, nullptr)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_ext_buf_size(std::__exchange(__rhs._M_ext_buf_size, 0)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_ext_next(std::__exchange(__rhs._M_ext_next, nullptr)),
+/usr/include/c++/11/bits/fstream.tcc:    _M_ext_end(std::__exchange(__rhs._M_ext_end, nullptr))
+/usr/include/c++/11/bits/fstream.tcc:      _M_mode = std::__exchange(__rhs._M_mode, ios_base::openmode(0));
+/usr/include/c++/11/bits/fstream.tcc:      _M_buf = std::__exchange(__rhs._M_buf, nullptr);
+/usr/include/c++/11/bits/fstream.tcc:      _M_buf_size = std::__exchange(__rhs._M_buf_size, 1);
+/usr/include/c++/11/bits/fstream.tcc:      _M_buf_allocated = std::__exchange(__rhs._M_buf_allocated, false);
+/usr/include/c++/11/bits/fstream.tcc:      _M_ext_buf = std::__exchange(__rhs._M_ext_buf, nullptr);
+/usr/include/c++/11/bits/fstream.tcc:      _M_ext_buf_size = std::__exchange(__rhs._M_ext_buf_size, 0);
+/usr/include/c++/11/bits/fstream.tcc:      _M_ext_next = std::__exchange(__rhs._M_ext_next, nullptr);
+/usr/include/c++/11/bits/fstream.tcc:      _M_ext_end = std::__exchange(__rhs._M_ext_end, nullptr);
+/usr/include/c++/11/bits/fstream.tcc:      _M_reading = std::__exchange(__rhs._M_reading, false);
+/usr/include/c++/11/bits/fstream.tcc:      _M_writing = std::__exchange(__rhs._M_writing, false);
+/usr/include/c++/11/bits/fstream.tcc:      _M_pback_cur_save = std::__exchange(__rhs._M_pback_cur_save, nullptr);
+/usr/include/c++/11/bits/fstream.tcc:      _M_pback_end_save = std::__exchange(__rhs._M_pback_end_save, nullptr);
+/usr/include/c++/11/bits/fstream.tcc:      _M_pback_init = std::__exchange(__rhs._M_pback_init, false);
+/usr/include/c++/11/bits/stl_deque.h:       *  This exchanges the elements between two deques in constant time.
+/usr/include/c++/11/bits/ios_base.h:        int __res = __gnu_cxx::__exchange_and_add_dispatch(&_M_refcount, -1);
+/usr/include/c++/11/bits/stl_map.h:       *  This exchanges the elements between two maps in constant
+/usr/include/c++/11/atomic:    exchange(bool __i, memory_order __m = memory_order_seq_cst) noexcept
+/usr/include/c++/11/atomic:    { return _M_base.exchange(__i, __m); }
+/usr/include/c++/11/atomic:    exchange(bool __i,
+/usr/include/c++/11/atomic:    { return _M_base.exchange(__i, __m); }
+/usr/include/c++/11/atomic:    compare_exchange_weak(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    compare_exchange_weak(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    compare_exchange_weak(bool& __i1, bool __i2,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m); }
+/usr/include/c++/11/atomic:    compare_exchange_weak(bool& __i1, bool __i2,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_weak(__i1, __i2, __m); }
+/usr/include/c++/11/atomic:    compare_exchange_strong(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    compare_exchange_strong(bool& __i1, bool __i2, memory_order __m1,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    compare_exchange_strong(bool& __i1, bool __i2,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m); }
+/usr/include/c++/11/atomic:    compare_exchange_strong(bool& __i1, bool __i2,
+/usr/include/c++/11/atomic:    { return _M_base.compare_exchange_strong(__i1, __i2, __m); }
+/usr/include/c++/11/atomic:      exchange(_Tp __i, memory_order __m = memory_order_seq_cst) noexcept
+/usr/include/c++/11/atomic:	__atomic_exchange(std::__addressof(_M_i), std::__addressof(__i),
+/usr/include/c++/11/atomic:      exchange(_Tp __i,
+/usr/include/c++/11/atomic:	__atomic_exchange(std::__addressof(_M_i), std::__addressof(__i),
+/usr/include/c++/11/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/11/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/11/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/11/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/11/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i,
+/usr/include/c++/11/atomic:      { return compare_exchange_weak(__e, __i, __m,
+/usr/include/c++/11/atomic:      compare_exchange_weak(_Tp& __e, _Tp __i,
+/usr/include/c++/11/atomic:      { return compare_exchange_weak(__e, __i, __m,
+/usr/include/c++/11/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/11/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/11/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i, memory_order __s,
+/usr/include/c++/11/atomic:	return __atomic_compare_exchange(std::__addressof(_M_i),
+/usr/include/c++/11/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i,
+/usr/include/c++/11/atomic:      { return compare_exchange_strong(__e, __i, __m,
+/usr/include/c++/11/atomic:      compare_exchange_strong(_Tp& __e, _Tp __i,
+/usr/include/c++/11/atomic:      { return compare_exchange_strong(__e, __i, __m,
+/usr/include/c++/11/atomic:      exchange(__pointer_type __p,
+/usr/include/c++/11/atomic:      { return _M_b.exchange(__p, __m); }
+/usr/include/c++/11/atomic:      exchange(__pointer_type __p,
+/usr/include/c++/11/atomic:      { return _M_b.exchange(__p, __m); }
+/usr/include/c++/11/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/11/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/11/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:	return compare_exchange_weak(__p1, __p2, __m,
+/usr/include/c++/11/atomic:      compare_exchange_weak(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:	return compare_exchange_weak(__p1, __p2, __m,
+/usr/include/c++/11/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/11/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:      { return _M_b.compare_exchange_strong(__p1, __p2, __m1, __m2); }
+/usr/include/c++/11/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:	return _M_b.compare_exchange_strong(__p1, __p2, __m,
+/usr/include/c++/11/atomic:      compare_exchange_strong(__pointer_type& __p1, __pointer_type __p2,
+/usr/include/c++/11/atomic:	return _M_b.compare_exchange_strong(__p1, __p2, __m,
+/usr/include/c++/11/atomic:    atomic_exchange_explicit(atomic<_ITp>* __a, __atomic_val_t<_ITp> __i,
+/usr/include/c++/11/atomic:    { return __a->exchange(__i, __m); }
+/usr/include/c++/11/atomic:    atomic_exchange_explicit(volatile atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:    { return __a->exchange(__i, __m); }
+/usr/include/c++/11/atomic:    atomic_compare_exchange_weak_explicit(atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:    { return __a->compare_exchange_weak(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    atomic_compare_exchange_weak_explicit(volatile atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:    { return __a->compare_exchange_weak(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    atomic_compare_exchange_strong_explicit(atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:    { return __a->compare_exchange_strong(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    atomic_compare_exchange_strong_explicit(volatile atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:    { return __a->compare_exchange_strong(*__i1, __i2, __m1, __m2); }
+/usr/include/c++/11/atomic:    atomic_exchange(atomic<_ITp>* __a, __atomic_val_t<_ITp> __i) noexcept
+/usr/include/c++/11/atomic:    { return atomic_exchange_explicit(__a, __i, memory_order_seq_cst); }
+/usr/include/c++/11/atomic:    atomic_exchange(volatile atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:    { return atomic_exchange_explicit(__a, __i, memory_order_seq_cst); }
+/usr/include/c++/11/atomic:    atomic_compare_exchange_weak(atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:      return atomic_compare_exchange_weak_explicit(__a, __i1, __i2,
+/usr/include/c++/11/atomic:    atomic_compare_exchange_weak(volatile atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:      return atomic_compare_exchange_weak_explicit(__a, __i1, __i2,
+/usr/include/c++/11/atomic:    atomic_compare_exchange_strong(atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:      return atomic_compare_exchange_strong_explicit(__a, __i1, __i2,
+/usr/include/c++/11/atomic:    atomic_compare_exchange_strong(volatile atomic<_ITp>* __a,
+/usr/include/c++/11/atomic:      return atomic_compare_exchange_strong_explicit(__a, __i1, __i2,
+/usr/include/c++/11/experimental/socket:      _M_sockfd(std::exchange(__rhs._M_sockfd, -1)),
+/usr/include/c++/11/experimental/socket:      _M_bits(std::exchange(__rhs._M_bits, {}))
+/usr/include/c++/11/experimental/socket:      _M_sockfd = std::exchange(__rhs._M_sockfd, -1);
+/usr/include/c++/11/experimental/socket:      _M_bits = std::exchange(__rhs._M_bits, {});
+/usr/include/c++/11/experimental/socket:	return std::exchange(_M_sockfd, -1);
+/usr/include/c++/11/experimental/memory_resource:    return __get_default_resource().exchange(__r);
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     void atomic_exchange(shared_ptr<_Tp>* __p, shared_ptr<_Tp> __r)
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     { return std::atomic_exchange<_Tp>(__p, __r); }
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     atomic_exchange_explicit(const shared_ptr<_Tp>* __p,
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     { return std::atomic_exchange_explicit<_Tp>(__p, __r, __mo); }
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_weak(shared_ptr<_Tp>* __p,
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_weak<_Tp>(__p, __v, __w); }
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_strong(shared_ptr<_Tp>* __p,
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_strong<_Tp>(__p, __v, __w); }
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_weak_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_weak_explicit<_Tp>(__p, __v, __w,
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     bool atomic_compare_exchange_strong_explicit(shared_ptr<_Tp>* __p,
+/usr/include/c++/11/experimental/bits/shared_ptr.h:     { return std::atomic_compare_exchange_strong_explicit<_Tp>(__p, __v, __w,
+/usr/include/c++/11/shared_mutex:#include <bits/move.h>        // move, __exchange
+/usr/include/c++/11/shared_mutex:	return std::__exchange(_M_pm, nullptr);
+/usr/include/c++/11/barrier:		    if (__phase.compare_exchange_strong(__expect, __full_step,
+/usr/include/c++/11/barrier:		else if (__phase.compare_exchange_strong(__expect, __half_step,
+/usr/include/c++/11/barrier:		    if (__phase.compare_exchange_strong(__expect, __full_step,

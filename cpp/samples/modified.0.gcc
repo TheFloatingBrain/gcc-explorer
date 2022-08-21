@@ -1,0 +1,116 @@
+/*root/workdir/Include/Warp/Parsing/Terms.hpp: In instantiation of */
+constexpr const auto Warp::Parsing::merge_terms(
+    Terms<LeftPreviousParameterType, LeftPrecedentParameterConstant,
+          LeftTermParameterTypes...>,
+    Terms<RightPreviousParameterType, RightPrecedentParameterConstant,
+          RightTermParameterTypes...>);
+LeftPreviousParameterType = void;
+auto LeftPrecedentParameterConstant = 1;
+LeftTermParameterTypes = {TreeTerm<
+    MyTerms::Digits, RegexTerm, Warp::Utilities::FixedString<7>{"[0-9]+"},
+    Warp::Utilities::FixedString<7>{"Digits"}, ctpg::associativity::no_assoc>};
+RightPreviousParameterType = Terms<
+    void, 0,
+    TreeTerm<MyTerms::Muliply, CharTerm, '*', ctpg::associativity::no_assoc>>;
+auto RightPrecedentParameterConstant = 2;
+RightTermParameterTypes = {
+    TreeTerm<MyTerms::Raise, CharTerm, '^', ctpg::associativity::no_assoc>};
+
+/*root/workdir/Include/Warp/Parsing/Terms.hpp:362:51:   required from */
+constexpr const auto Warp::Parsing::merge_terms(
+    Terms<LeftPreviousParameterType, LeftPrecedentParameterConstant,
+          LeftTermParameterTypes...>,
+    Terms<RightPreviousParameterType, RightPrecedentParameterConstant,
+          RightTermParameterTypes...>);
+LeftPreviousParameterType =
+    Terms<void, 1,
+          TreeTerm<MyTerms::Digits, RegexTerm,
+                   Warp::Utilities::FixedString<7>{"[0-9]+"},
+                   Warp::Utilities::FixedString<7>{"Digits"},
+                   ctpg::associativity::no_assoc>>;
+auto LeftPrecedentParameterConstant = 4;
+LeftTermParameterTypes = {
+    TreeTerm<MyTerms::Plus, CharTerm, '+', ctpg::associativity::no_assoc>};
+RightPreviousParameterType = Terms<
+    Terms<void, 0,
+          TreeTerm<MyTerms::Muliply, CharTerm, '*',
+                   ctpg::associativity::no_assoc>>,
+    2, TreeTerm<MyTerms::Raise, CharTerm, '^', ctpg::associativity::no_assoc>>;
+auto RightPrecedentParameterConstant = 3;
+RightTermParameterTypes = {TreeTerm<MyTerms::LeftAngleBracket, CharTerm, '<',
+                                    ctpg::associativity::no_assoc>};
+
+/*root/workdir/Include/Warp/Parsing/Terms.hpp:460:50:   required from */
+constexpr const auto Warp::Parsing::merge_terms(
+    Terms<LeftPreviousParameterType, LeftPrecedentParameterConstant,
+          LeftTermParameterTypes...>,
+    Terms<RightPreviousParameterType, RightPrecedentParameterConstant,
+          RightTermParameterTypes...>);
+LeftPreviousParameterType = Terms<
+    Terms<void, 1,
+          TreeTerm<MyTerms::Digits, RegexTerm,
+                   Warp::Utilities::FixedString<7>{"[0-9]+"},
+                   Warp::Utilities::FixedString<7>{"Digits"},
+                   ctpg::associativity::no_assoc>>,
+    4, TreeTerm<MyTerms::Plus, CharTerm, '+', ctpg::associativity::no_assoc>>;
+auto LeftPrecedentParameterConstant = 5;
+LeftTermParameterTypes = {TreeTerm<MyTerms::Mumble, StringTerm,
+                                   Warp::Utilities::FixedString<7>{"Mumble"},
+                                   ctpg::associativity::no_assoc>};
+RightPreviousParameterType = Terms<
+    Terms<void, 0,
+          TreeTerm<MyTerms::Muliply, CharTerm, '*',
+                   ctpg::associativity::no_assoc>>,
+    2, TreeTerm<MyTerms::Raise, CharTerm, '^', ctpg::associativity::no_assoc>>;
+auto RightPrecedentParameterConstant = 3;
+RightTermParameterTypes = {TreeTerm<MyTerms::LeftAngleBracket, CharTerm, '<',
+                                    ctpg::associativity::no_assoc>};
+
+/*root/workdir/Include/Warp/Parsing/Terms.hpp:482:41:   required by substitution
+ * of */
+template <class LeftTermParameterType, class RightTermParameterType>
+using MergeTerms = typename decltype(Warp::Parsing::merge_terms(
+    declval<LeftTermParameterType>(), declval<RightTermParameterType>()))::Type;
+LeftTermParameterType = Warp::Parsing::Terms<
+    Warp::Parsing::Terms<
+        Warp::Parsing::Terms<
+            void, 1,
+            Warp::Parsing::TreeTerm<MyTerms::Digits, Warp::Parsing::RegexTerm,
+                                    Warp::Utilities::FixedString<7>{"[0-9]+"},
+                                    Warp::Utilities::FixedString<7>{"Digits"},
+                                    ctpg::associativity::no_assoc>>,
+        4,
+        Warp::Parsing::TreeTerm<MyTerms::Plus, Warp::Parsing::CharTerm, '+',
+                                ctpg::associativity::no_assoc>>,
+    5,
+    Warp::Parsing::TreeTerm<MyTerms::Mumble, Warp::Parsing::StringTerm,
+                            Warp::Utilities::FixedString<7>{"Mumble"},
+                            ctpg::associativity::no_assoc>>;
+RightTermParameterType = Warp::Parsing::Terms<
+    Warp::Parsing::Terms<
+        Warp::Parsing::Terms<
+            void, 0,
+            Warp::Parsing::TreeTerm<MyTerms::Muliply, Warp::Parsing::CharTerm,
+                                    '*', ctpg::associativity::no_assoc>>,
+        2,
+        Warp::Parsing::TreeTerm<MyTerms::Raise, Warp::Parsing::CharTerm, '^',
+                                ctpg::associativity::no_assoc>>,
+    3,
+    Warp::Parsing::TreeTerm<MyTerms::LeftAngleBracket, Warp::Parsing::CharTerm,
+                            '<', ctpg::associativity::no_assoc>>;
+
+/// root/workdir/Test/Terms.cpp:444:5:   required from here
+/*root/workdir/Include/Warp/Parsing/Terms.hpp:419:45: error: ‘error’ is not a
+ * member of ‘MergedPreviousType’ {aka */
+Warp::Parsing::Terms<
+    Warp::Parsing::Terms<
+        void, 0,
+        Warp::Parsing::TreeTerm<MyTerms::Muliply, Warp::Parsing::CharTerm, '*',
+                                ctpg::associativity::no_assoc>>,
+    1,
+    Warp::Parsing::TreeTerm<MyTerms::Digits, Warp::Parsing::RegexTerm,
+                            Warp::Utilities::FixedString<7>{"[0-9]+"},
+                            Warp::Utilities::FixedString<7>{"Digits"},
+                            ctpg::associativity::no_assoc>>;
+//  419 |                         MergedPreviousType::error;
+//      |                                             ^~~~~
