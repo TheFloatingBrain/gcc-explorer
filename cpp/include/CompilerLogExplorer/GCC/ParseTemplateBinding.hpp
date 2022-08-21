@@ -124,14 +124,15 @@ namespace CompilerLogExplorer::GCC
 								bindingData, 
 								bindingValue, 
 								equalTerm, 
-								bindingArgument, 
-								rightSquareBracket, 
-								semiColonTerm
+								bindingArgument
 							)
-						>= [](auto list, auto parameter, auto, auto argument, auto, auto) {
+						>= [](auto list, auto parameter, auto, auto argument) {
 							list[parameter] = argument;
 							return list;
 							//return fromParent(list, parameter, argument);
+						}, 
+						bindingData(bindingArgument, semiColonTerm) >= [](auto list, auto) {
+							return list;
 						}, 
 						bindingData(bindingArgument) >= [](auto list) {
 							return list;
